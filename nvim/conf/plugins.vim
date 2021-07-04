@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
@@ -15,17 +16,14 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
     Plug 'leafgarland/typescript-vim'
     Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'wakatime/vim-wakatime'
     Plug 'mhinz/vim-startify'
     Plug 'bling/vim-airline'
     Plug 'MaxMEllon/vim-jsx-pretty'
-    Plug 'mg979/vim-visual-multi'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
-    Plug 'godlygeek/tabular', {'for': 'markdown'}
     Plug 'dhruvasagar/vim-table-mode',{'for': 'markdown', 'do': ':TableFormat'}
     Plug 'lervag/vimtex', {'for': 'tex'}
     Plug 'Valloric/MatchTagAlways'
+    Plug 'vimwiki/vimwiki'
 call plug#end()
 
 colorscheme one

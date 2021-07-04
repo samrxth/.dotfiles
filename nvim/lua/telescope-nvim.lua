@@ -10,7 +10,7 @@ require("telescope").setup {
             "--column",
             "--smart-case"
         },
-        file_ignore_patterns = {"node_modules", ".next", ".cache", "public"},
+        file_ignore_patterns = {"node_modules", ".next", ".cache", "public", "plugged", ".git"},
         prompt_prefix = " ",
         selection_caret = " ",
         entry_prefix = "  ",

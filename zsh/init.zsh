@@ -40,7 +40,7 @@ source ~/zsh/bindings.zsh
 
 
 function updateDots() {
-  cp -R ~/.config/nvim/ ~/.dotfiles/nvim
+  rsync -rv --exclude=plugged ~/.config/nvim ~/.dotfiles/
   cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2
   cp -R ~/zsh ~/.dotfiles
 }
