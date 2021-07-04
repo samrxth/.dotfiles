@@ -1,17 +1,22 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'rakr/vim-one'
+    Plug 'norcalli/nvim-base16.lua'
+    Plug 'akinsho/nvim-bufferline.lua'
     Plug 'junegunn/goyo.vim'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'ap/vim-css-color'
     Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     Plug 'vim-pandoc/vim-pandoc-syntax'
-    Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
     Plug 'leafgarland/typescript-vim'
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'wakatime/vim-wakatime'
-    Plug 'joshdick/onedark.vim'
     Plug 'mhinz/vim-startify'
     Plug 'bling/vim-airline'
     Plug 'MaxMEllon/vim-jsx-pretty'
@@ -23,4 +28,4 @@ call plug#begin('~/.vim/plugged')
     Plug 'Valloric/MatchTagAlways'
 call plug#end()
 
-colorscheme onedark
+colorscheme one

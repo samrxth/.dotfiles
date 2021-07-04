@@ -1,14 +1,9 @@
 let g:mapleader = "\<Space>"
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:python3_host_prog = '/usr/local/bin/python3'
-let g:airline_theme='onedark'
+let g:airline_theme='one'
 let g:airline_powerline_fonts = 1
 let g:airline_section_c = '%t' "--filename "
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#show_tab_type=1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -35,3 +30,6 @@ let g:prettier#autoformat = 0
 let g:prettier#exec_cmd_async = 1
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#bracket_spacing = 'false'
+
+lua require("top-bufferline")
+lua require("telescope-nvim")

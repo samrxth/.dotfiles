@@ -1,3 +1,4 @@
+set nofoldenable
 set hidden
 syntax on
 set termguicolors
@@ -9,7 +10,6 @@ set iskeyword+=-
 set mouse=a
 set splitbelow
 set splitright
-set t_Co=256
 set wildmenu
 set wildmode=longest:full,full
 set tabstop=2
@@ -35,3 +35,6 @@ set shiftwidth=2
 set expandtab
 set relativenumber
 set nu rnu
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"

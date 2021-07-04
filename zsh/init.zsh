@@ -1,5 +1,5 @@
+alias vim="nvim"
 alias myip="curl http://ipecho.net/plain; echo"
-alias mkcd='foo(){ mkdir -p "$1"; cd "$1" }; foo '
 alias rm="trash"
 alias gs="git status"
 alias gd="git diff"
@@ -11,8 +11,8 @@ alias c="clear"
 alias ls="logo-ls -A -D"
 alias cls="c;ls"
 alias v="vim"
-alias vrc="vim ~/.vim/init.vim"
-alias zrc="cd zsh;vim ~/zsh/init.zsh"
+alias vrc="vim ~/.config/nvim/init.vim"
+alias zrc="cd ~/zsh;vim ~/zsh/init.zsh"
 alias pdf="open -a Preview "
 source ~/antigen.zsh
 
@@ -39,11 +39,10 @@ source ~/zsh/completion.zsh
 source ~/zsh/bindings.zsh
 
 
-export PATH=~/.cargo/bin:$PATH
-
 function updateDots() {
-  cp ~/.vim/coc-settings.json ~/.dotfiles/vim
+  cp -R ~/.config/nvim/ ~/.dotfiles/nvim
   cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2
-  cp -R ~/.vim/conf ~/.dotfiles/vim/
   cp -R ~/zsh ~/.dotfiles
 }
+
+source $HOME/.cargo/env

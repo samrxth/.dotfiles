@@ -1,29 +1,7 @@
-# Global aliases can break things. Unset before using any non-builtins.
 [[ -o aliases ]] && _vim_mode_shopt_aliases=1
 builtin set -o no_aliases
 
 bindkey -v
-
-#${(%):-%x}_debug () { print -r "$(date) $@" >> /tmp/zsh-debug-vim-mode.log 2>&1 }
-
-
-# Special keys {{{1
-
-# NB: The terminfo sequences are meant to be used with the terminal
-# in *application mode*. This is properly initiated with `echoti smkx`,
-# usually in a zle line-init hook widget. But it may cause problems:
-# https://github.com/robbyrussell/oh-my-zsh/pull/5113
-#
-# So for now, leave smkx untouched, and let the framework deal with it.
-# Instead, read from terminfo but also hard-code values that various
-# terminals use.
-#
-# Please open an issue if your special keys (Home, End, arrow keys,
-# etc.) are not being recognized here!
-#
-# Extra info:
-# http://invisible-island.net/xterm/xterm.faq.html#xterm_arrows
-# https://stackoverflow.com/a/29408977/749778
 
 zmodload zsh/terminfo
 
@@ -63,14 +41,6 @@ vim-mode-define-special-key Alt-Right  ''    "^[[1;3C" "^[^[[C"
 vim-mode-define-special-key Alt-Up     ''    "^[[1;3A" "^[^[[A"
 vim-mode-define-special-key Alt-Down   ''    "^[[1;3B" "^[^[[B"
 
-#for k in ${(k)vim_mode_special_keys}; do
-#    printf '%-12s' "$k:";
-#    for x in ${(z)vim_mode_special_keys[$k]}; do printf "%8s" ${(Q)x}; done;
-#    printf "\n";
-#done
-
-
-# + vim-mode-bindkey {{{1
 function vim-mode-bindkey () {
     local -a maps
     local command
@@ -84,13 +54,6 @@ function vim-mode-bindkey () {
 
     command=$1
     shift
-
-    # A key combo can be made of more than one key press, so a binding for
-    # <Home> <End> will map to '^[[1~^[[4~', for example. XXX Except this
-    # doesn't seem to work. ZLE just wants a single special key for viins
-    # & vicmd (multiples work in emacs). Oh, well, this accumulator
-    # doesn't hurt and may come in handy. Just only call vim-mode-bindkey
-    # with one special key.
 
     function vim-mode-accum-combo () {
         typeset -g -a combos
@@ -132,13 +95,6 @@ if [[ -z $VIM_MODE_NO_DEFAULT_BINDINGS ]]; then
     vim-mode-bindkey viins vicmd -- yank                               '^Y'
     vim-mode-bindkey viins vicmd -- undo                               '^_'
 
-    # Avoid key bindings that conflict with <Esc> entering NORMAL mode, like
-    # - common movement keys (hljk...)
-    # - common actions (dxcr...)
-    # But make this configurable: some people will never use ^[b and would
-    # rather be sure not to have a conflict, while others use it a lot and will
-    # rarely type 'b' as the first key in NORMAL mode. Which behavior shoudl win
-    # is very user-dependent.
     vim-mode-maybe-bind() {
         local k="$1"; shift
         if (( $+VIM_MODE_VICMD_KEY )) \
@@ -154,15 +110,10 @@ if [[ -z $VIM_MODE_NO_DEFAULT_BINDINGS ]]; then
     vim-mode-maybe-bind d viins vicmd -- kill-word                     '^[d'
     vim-mode-maybe-bind f viins vicmd -- forward-word                  '^[f'
     vim-mode-maybe-bind h viins       -- run-help                      '^[h'
-    # u is not likely to cause conflict, but keep it here with l
     vim-mode-maybe-bind u viins       -- up-case-word                  '^[u'
     vim-mode-maybe-bind l viins       -- down-case-word                '^[l'
 
-    # Some <Esc>-prefixed bindings that should rarely conflict with NORMAL mode,
-    # so always define them
-    # '.' usually comes after some other keystrokes
     vim-mode-maybe-bind . viins vicmd -- insert-last-word              '^[.'
-    # 'g...' bindings are not commonly-used; see `bindkey -pM vicmd g`
     vim-mode-maybe-bind g viins       -- get-line                      '^[g'
     vim-mode-bindkey viins       -- push-line                          '^Q'
 

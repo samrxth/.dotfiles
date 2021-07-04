@@ -1,5 +1,10 @@
 let g:mapleader = " "
 
+command! Conf :e ~/.config/nvim/init.vim
+command! Cdconf :cd ~/.config/nvim
+nnoremap <leader>ff :Telescope find_files hidden=true<CR>
+nnoremap <leader>fb :Telescope buffers<CR>
+nnoremap <leader>fh :Telescope help_tags<CR>
 nnoremap <leader>nn :CocCommand explorer<CR>
 nnoremap y "*y
 vnoremap y "*y
@@ -23,7 +28,6 @@ map <Left> <NOP>
 map <Right> <NOP>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-cnoreabbrev q bd
 cnoreabbrev wq w<bar>bd
 cnoreabbrev Wq w<bar>bd
 cnoreabbrev WQ w<bar>bd
@@ -34,8 +38,12 @@ cnoreabbrev Q q
 cnoreabbrev B buffer
 nnoremap Q <Nop>
 if bufwinnr(1)
-  noremap <silent> <C-H> :vertical resize -4<CR>
-  noremap <silent> <C-L> :vertical resize +4><CR>
-  noremap <silent> <C-J> :resize -4<CR>
-  noremap <silent> <C-K> :resize +4<CR>
+  nnoremap <silent> <C-H> :vertical resize -4<CR>
+  nnoremap <silent> <C-L> :vertical resize +4><CR>
+  nnoremap <silent> <C-J> :resize -4<CR>
+  nnoremap <silent> <C-K> :resize +4<CR>
+  tnoremap <silent> <C-H> :vertical resize -4<CR>
+  tnoremap <silent> <C-L> :vertical resize +4><CR>
+  tnoremap <silent> <C-J> :resize -4<CR>
+  tnoremap <silent> <C-K> :resize +4<CR>
 endif
