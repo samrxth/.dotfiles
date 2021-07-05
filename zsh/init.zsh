@@ -26,6 +26,7 @@ function push() {
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle agkozak/zsh-z
 antigen apply
 
 
@@ -46,3 +47,5 @@ function updateDots() {
 }
 
 source $HOME/.cargo/env
+export VISUAL=nvim
+export EDITOR="$VISUAL"
