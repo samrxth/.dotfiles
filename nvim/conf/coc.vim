@@ -11,6 +11,7 @@ let g:coc_global_extensions = [
   \ 'coc-explorer',
   \ 'coc-python',
   \ 'coc-jedi',
+  \ 'coc-vimlsp',
   \ ]
 
 function! s:show_documentation()

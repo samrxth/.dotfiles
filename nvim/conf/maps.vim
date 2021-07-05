@@ -2,6 +2,9 @@ let g:mapleader = " "
 
 command! Conf :e ~/.config/nvim/init.vim
 command! Cdconf :cd ~/.config/nvim
+
+inoremap <C-a> <C-o>0
+inoremap <C-b> <C-o>$
 nnoremap <leader>ff :Telescope find_files hidden=true<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>

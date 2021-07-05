@@ -1,6 +1,6 @@
 let g:mapleader = "\<Space>"
 let g:python3_host_prog = '/usr/local/bin/python3'
-let g:airline_theme='one'
+let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
 let g:airline_section_c = '%t' "--filename "
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'

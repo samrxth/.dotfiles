@@ -3,8 +3,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
-    Plug 'rakr/vim-one'
     Plug 'norcalli/nvim-base16.lua'
+    Plug 'joshdick/onedark.vim'
     Plug 'akinsho/nvim-bufferline.lua'
     Plug 'junegunn/goyo.vim'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -26,4 +26,4 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vimwiki/vimwiki'
 call plug#end()
 
-colorscheme one
+colorscheme onedark

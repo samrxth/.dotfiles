@@ -36,5 +36,6 @@
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "v": "open:vsplit"
-  }
+  },
+  "explorer.icon.enableVimDevicons": true
 }
