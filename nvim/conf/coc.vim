@@ -21,8 +21,10 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+xmap <leader>aa  <Plug>(coc-codeaction-selected)<CR>
+nmap <leader>aa  <Plug>(coc-codeaction-selected)<CR>
+
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
+nnoremap <silent> gy :call CocAction('jumpTypeDefinition', 'drop')<CR>

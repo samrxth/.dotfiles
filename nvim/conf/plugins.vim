@@ -1,4 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'liuchengxu/vista.vim'
+    Plug 'jreybert/vimagit'
+    Plug 'tpope/vim-fugitive'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
@@ -24,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lervag/vimtex', {'for': 'tex'}
     Plug 'Valloric/MatchTagAlways'
     Plug 'vimwiki/vimwiki'
+    Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 colorscheme onedark

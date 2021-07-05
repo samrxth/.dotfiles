@@ -5,10 +5,6 @@ command! Cdconf :cd ~/.config/nvim
 
 inoremap <C-a> <C-o>0
 inoremap <C-b> <C-o>$
-nnoremap <leader>ff :Telescope find_files hidden=true<CR>
-nnoremap <leader>fb :Telescope buffers<CR>
-nnoremap <leader>fh :Telescope help_tags<CR>
-nnoremap <leader>nn :CocCommand explorer<CR>
 nnoremap y "*y
 vnoremap y "*y
 nnoremap x "*x
@@ -50,3 +46,20 @@ if bufwinnr(1)
   tnoremap <silent> <C-J> :resize -4<CR>
   tnoremap <silent> <C-K> :resize +4<CR>
 endif
+
+nnoremap <leader>ff :Telescope find_files hidden=true<CR>
+nnoremap <leader>fb :Telescope buffers<CR>
+nnoremap <leader>fh :Telescope help_tags<CR>
+nnoremap <leader>nn :CocCommand explorer<CR>
+nnoremap <leader>gs :Magit<CR>
+nnoremap <leader>vv :Vista finder coc<CR>
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()

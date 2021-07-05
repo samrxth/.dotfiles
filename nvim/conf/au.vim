@@ -10,4 +10,11 @@ augroup language_react
     autocmd!
     autocmd bufnewfile,bufread *.tsx set filetype=javascriptreact
 augroup END
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
