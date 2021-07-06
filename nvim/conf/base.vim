@@ -1,3 +1,8 @@
+set guifont=FiraCode\ Nerd\ Font\ Mono:h17
+set guioptions-=m
+set guioptions-=T
+set guioptions-=rd
+set guioptions-=L
 set nofoldenable
 set hidden
 syntax on
