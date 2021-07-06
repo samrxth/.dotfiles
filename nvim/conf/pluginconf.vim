@@ -71,3 +71,4 @@ let g:syntastic_style_warning_symbol='x'
 
 lua require("top-bufferline")
 lua require("telescope-nvim")
+lua require("gitsigns").setup {}

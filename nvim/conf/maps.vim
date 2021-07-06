@@ -49,11 +49,10 @@ endif
 nnoremap <leader>ff :Telescope find_files hidden=true<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>
-nnoremap <leader>fg :Telescope live_grep<CR>
 nnoremap <leader>nn :CocCommand explorer<CR>
 nnoremap <leader>gs :Magit<CR>
-nnoremap <leader>vf :Vista finder coc<CR>
 nnoremap <leader>vv :Vista coc<CR>
+nnoremap <leader>b :Gitsigns toggle_current_line_blame<CR>
 
 function! s:check_back_space() abort
   let col = col('.') - 1

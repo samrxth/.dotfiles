@@ -49,5 +49,6 @@ function updateDots() {
 }
 
 source $HOME/.cargo/env
+export PATH=/Users/sam/.node_modules/bin:$PATH
 export VISUAL=nvim
 export EDITOR="$VISUAL"

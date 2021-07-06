@@ -19,9 +19,3 @@ augroup python
   autocmd BufRead,BufNewFile *.py set tabstop=4
   autocmd BufRead,BufNewFile *.py set shiftwidth=4
 augroup END
-
-augroup long_lines
-  autocmd!
-  autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#111111
-  autocmd BufEnter * match OverLength /\%75v.*/
-augroup END

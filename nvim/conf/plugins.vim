@@ -1,12 +1,11 @@
 call plug#begin('~/.config/nvim/plugged')
+    Plug 'lewis6991/gitsigns.nvim'
     Plug 'vim-syntastic/syntastic'
     Plug 'klen/python-mode'
     Plug 'rust-lang/rust.vim'
-    Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
     Plug 'nvim-telescope/telescope-fzy-native.nvim'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'liuchengxu/vista.vim'
-    Plug 'jreybert/vimagit'
+    Plug 'jremmen/vim-ripgrep'
     Plug 'tpope/vim-fugitive'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
     Plug 'nvim-lua/popup.nvim'
@@ -16,7 +15,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'joshdick/onedark.vim'
     Plug 'akinsho/nvim-bufferline.lua'
     Plug 'junegunn/goyo.vim'
-    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'ap/vim-css-color'
     Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
@@ -33,7 +31,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lervag/vimtex', {'for': 'tex'}
     Plug 'Valloric/MatchTagAlways'
     Plug 'vimwiki/vimwiki'
-    Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 colorscheme onedark
