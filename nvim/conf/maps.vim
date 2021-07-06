@@ -20,7 +20,6 @@ nnoremap <D-v> "*p
 nnoremap <D-c> "*y
 nnoremap <D-x> "*x
 inoremap <expr> <CR> getline(".")[col(".")-2:col(".")-1]=="{}" ? "<cr><esc>O" : "<cr>"
-" Disable arrow keys (Vim don't need this)
 map <Up> <NOP>
 map <Down> <NOP>
 map <Left> <NOP>
@@ -52,7 +51,6 @@ nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>
 nnoremap <leader>fg :Telescope live_grep<CR>
 nnoremap <leader>nn :CocCommand explorer<CR>
-nnoremap <leader>r :Ranger<CR>
 nnoremap <leader>gs :Magit<CR>
 nnoremap <leader>vf :Vista finder coc<CR>
 nnoremap <leader>vv :Vista coc<CR>

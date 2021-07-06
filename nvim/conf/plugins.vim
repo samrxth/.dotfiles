@@ -1,5 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
-    Plug 'francoiscabrol/ranger.vim'
+    Plug 'vim-syntastic/syntastic'
+    Plug 'klen/python-mode'
+    Plug 'rust-lang/rust.vim'
     Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
     Plug 'nvim-telescope/telescope-fzy-native.nvim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }

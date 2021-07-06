@@ -2,7 +2,6 @@ command! -nargs=0 Format :call CocAction('format')
 let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pyright',
-  \ 'coc-rust-analyzer',
   \ 'coc-pairs',
   \ 'coc-tsserver',
   \ 'coc-eslint',
