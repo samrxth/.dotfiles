@@ -26,6 +26,11 @@ function push() {
     git push
 }
 
+function pandocc(){
+  pandoc --filter --citeproc --bibliography=paper.bib --variable classoption=twocolumn --variable papersize=a4paper -s \
+    $1 -o paper.pdf
+}
+
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle agkozak/zsh-z

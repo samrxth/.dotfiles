@@ -11,7 +11,6 @@ augroup language_react
     autocmd bufnewfile,bufread *.tsx set filetype=javascriptreact
 augroup END
 
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
 autocmd BufWritePre *.rs RustFmt
 
 augroup python

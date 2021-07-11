@@ -63,3 +63,15 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+function! Save_popup()
+  let option_num = input("  1. Save your code and format with Prettier  \n  2. Save your code \n  3. Cancel\nChoose your option: ")
+  if option_num == '1'
+    execute "w"
+    execute "PrettierAsync"
+  elseif option_num == '2'
+    execute 'w'
+  endif
+endfunction
+
+nnoremap <leader>o :call Save_popup()<CR>

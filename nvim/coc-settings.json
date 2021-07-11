@@ -36,5 +36,6 @@
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "v": "open:vsplit"
-  }
+  },
+  "emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact"}
 }

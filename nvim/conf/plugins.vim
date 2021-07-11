@@ -1,4 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
+    Plug 'SirVer/ultisnips'
+    Plug 'mlaursen/vim-react-snippets'
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'vim-syntastic/syntastic'
     Plug 'klen/python-mode'

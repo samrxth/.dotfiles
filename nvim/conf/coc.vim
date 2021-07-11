@@ -1,12 +1,12 @@
 command! -nargs=0 Format :call CocAction('format')
 let g:coc_global_extensions = [
   \ 'coc-snippets',
+  \ 'coc-emmet',
+  \ 'coc-eslint',
   \ 'coc-pyright',
   \ 'coc-pairs',
   \ 'coc-tsserver',
-  \ 'coc-eslint',
   \ 'coc-json',
-  \ 'coc-emmet',
   \ 'coc-explorer',
   \ 'coc-python',
   \ 'coc-jedi',
