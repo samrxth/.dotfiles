@@ -1,5 +1,3 @@
-let g:mapleader = " "
-
 command! Conf :e ~/.config/nvim/init.vim
 command! Cdconf :cd ~/.config/nvim
 
@@ -44,9 +42,11 @@ if bufwinnr(1)
   tnoremap <silent> <C-K> :resize +4<CR>
 endif
 
+nnoremap <leader>dc :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ff :Telescope find_files hidden=true<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>
+nnoremap <leader>fo :Telescope oldfiles<CR>
 nnoremap <leader>nn :CocCommand explorer<CR>
 nnoremap <leader>gs :Magit<CR>
 nnoremap <leader>vv :Vista coc<CR>

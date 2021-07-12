@@ -1,4 +1,3 @@
-autocmd BufDelete * if empty(filter(tabpagebuflist(), '!buflisted(v:val)')) | Startify | endif
 autocmd TermOpen * setlocal listchars= nonumber norelativenumber
 autocmd TermOpen * startinsert
 autocmd BufEnter,BufWinEnter,WinEnter term://* startinsert

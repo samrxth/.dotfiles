@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
+    Plug 'glepnir/dashboard-nvim'
     Plug 'romgrk/doom-one.vim'
     Plug 'folke/which-key.nvim'
     Plug 'norcalli/nvim-base16.lua'
@@ -31,17 +32,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'leafgarland/typescript-vim'
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'wakatime/vim-wakatime'
-    Plug 'mhinz/vim-startify'
     Plug 'MaxMEllon/vim-jsx-pretty'
     Plug 'dhruvasagar/vim-table-mode',{'for': 'markdown', 'do': ':TableFormat'}
     Plug 'lervag/vimtex', {'for': 'tex'}
     Plug 'Valloric/MatchTagAlways'
     Plug 'vimwiki/vimwiki'
 call plug#end()
-
-colorscheme doom-one
-
-lua << EOF
-  vim.g.mapleader = " "
-  require("which-key").setup {}
-EOF

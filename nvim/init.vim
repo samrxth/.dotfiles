@@ -1,3 +1,5 @@
+let g:mapleader = " "
+
 source ~/.config/nvim/conf/plugins.vim
 source ~/.config/nvim/conf/pluginconf.vim
 source ~/.config/nvim/conf/au.vim
