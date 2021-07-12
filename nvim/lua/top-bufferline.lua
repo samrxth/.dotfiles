@@ -18,3 +18,6 @@ require "bufferline".setup {
         mappings = "true"
     }
 }
+
+local statusline = require('statusline')
+statusline.tabline = false

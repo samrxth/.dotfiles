@@ -5,6 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-syntastic/syntastic'
     Plug 'klen/python-mode'
     Plug 'rust-lang/rust.vim'
+    Plug 'beauwilliams/statusline.lua'
     Plug 'nvim-telescope/telescope-fzy-native.nvim'
     Plug 'liuchengxu/vista.vim'
     Plug 'jremmen/vim-ripgrep'
@@ -16,6 +17,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'norcalli/nvim-base16.lua'
     Plug 'joshdick/onedark.vim'
     Plug 'akinsho/nvim-bufferline.lua'
+    Plug 'kosayoda/nvim-lightbulb'
     Plug 'junegunn/goyo.vim'
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'ap/vim-css-color'
@@ -27,7 +29,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'wakatime/vim-wakatime'
     Plug 'mhinz/vim-startify'
-    Plug 'bling/vim-airline'
     Plug 'MaxMEllon/vim-jsx-pretty'
     Plug 'dhruvasagar/vim-table-mode',{'for': 'markdown', 'do': ':TableFormat'}
     Plug 'lervag/vimtex', {'for': 'tex'}

@@ -26,7 +26,6 @@ set autoindent
 set background=dark
 set nobackup
 set nowritebackup
-set noshowmode
 set updatetime=300
 set timeoutlen=500
 set laststatus=2
