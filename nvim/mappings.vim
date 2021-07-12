@@ -3,25 +3,31 @@ command! Cdconf :cd ~/.config/nvim
 
 inoremap <C-a> <C-o>0
 inoremap <C-b> <C-o>$
-nnoremap y "*y
-vnoremap y "*y
-nnoremap x "*x
-vnoremap x "*x
-nnoremap p "*p
+nnoremap <leader>y "*y
+vnoremap <leader>y "*y
+nnoremap <leader>x "*x
+vnoremap <leader>x "*x
+nnoremap <leader>p "*p
 nnoremap gn :bn<CR>
 nnoremap gp :bp<CR>
-nnoremap bd :bd<CR>
-vnoremap p "*p
-inoremap jk <ESC>
 nnoremap <leader>a ggVG
-nnoremap <D-v> "*p
-nnoremap <D-c> "*y
-nnoremap <D-x> "*x
-inoremap <expr> <CR> getline(".")[col(".")-2:col(".")-1]=="{}" ? "<cr><esc>O" : "<cr>"
-map <Up> <NOP>
-map <Down> <NOP>
-map <Left> <NOP>
-map <Right> <NOP>
+nnoremap bd :bd<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+xmap <leader>ha  <Plug>(coc-codeaction-selected)<CR>
+nmap <leader>ha  <Plug>(coc-codeaction-selected)<CR>
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
+nnoremap <silent> gy :call CocAction('jumpTypeDefinition', 'drop')<CR>
+
 cnoreabbrev wq w<bar>bd
 cnoreabbrev Wq w<bar>bd
 cnoreabbrev WQ w<bar>bd
@@ -48,23 +54,3 @@ nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>
 nnoremap <leader>fo :Telescope oldfiles<CR>
 nnoremap <leader>nn :CocCommand explorer<CR>
-nnoremap <leader>gs :Magit<CR>
-nnoremap <leader>vv :Vista coc<CR>
-nnoremap <leader>b :Gitsigns toggle_current_line_blame<CR>
-
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-P>" : "\<C-H>"
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-
-function! Save_popup()
-  let option_num = input("  1. Save your code and format with Prettier  \n  2. Save your code \n  3. Cancel\nChoose your option: ")
-  if option_num == '1'
-    execute "w"
-    execute "PrettierAsync"
-  elseif option_num == '2'
-    execute 'w'
-  endif
-endfunction
-
-nnoremap <leader>o :call Save_popup()<CR>

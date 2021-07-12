@@ -1,4 +1,3 @@
-let g:mapleader = " "
 set guifont=FiraCode\ Nerd\ Font\ Mono:h17
 set guioptions-=m
 set guioptions-=T
@@ -40,5 +39,3 @@ set shiftwidth=2
 set expandtab
 set relativenumber
 set nu rnu
-
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

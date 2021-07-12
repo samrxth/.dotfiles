@@ -41,5 +41,6 @@
   "emmet.includeLanguages": {
     "vue-html": "html",
     "javascript": "javascriptreact"
-  }
+  },
+  "hover.target": "float"
 }
