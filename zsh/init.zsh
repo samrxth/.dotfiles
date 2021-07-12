@@ -13,7 +13,7 @@ alias l="logo-ls -A -D"
 alias s="logo-ls -A -D"
 alias cls="c;ls"
 alias v="vim"
-alias vrc="vim ~/.config/nvim/init.vim"
+alias vrc="vim ~/.config/nvim/init.lua"
 alias zrc="cd ~/zsh;vim ~/zsh/init.zsh"
 alias pdf="open -a Preview "
 source ~/antigen.zsh

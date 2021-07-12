@@ -54,3 +54,15 @@ nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>
 nnoremap <leader>fo :Telescope oldfiles<CR>
 nnoremap <leader>nn :CocCommand explorer<CR>
+
+function! Save_popup()
+  let option_num = input("  1. Save your code and format with Prettier  \n  2. Save your code \n  3. Cancel\nChoose your option: ")
+  if option_num == '1'
+    execute "w"
+    execute "PrettierAsync"
+  elseif option_num == '2'
+    execute 'w'
+  endif
+endfunction
+
+nnoremap <leader>o :call Save_popup()<CR>
