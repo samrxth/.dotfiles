@@ -1,3 +1,4 @@
+let g:ale_disable_lsp = 1
 let g:ale_completion_autoimport = 1
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:prettier#autoformat = 0
@@ -43,7 +44,6 @@ let g:syntastic_style_error_symbol='X'
 let g:syntastic_warning_symbol='x'
 let g:syntastic_style_warning_symbol='x'
 
-lua require("top-bufferline")
 lua require("telescope-nvim")
 lua require("gitsigns").setup {}
 
@@ -53,3 +53,4 @@ let wiki_1.path = '~/Documents/vimwiki'
 let wiki_1.ext = '.md'
 
 let g:vimwiki_list = [wiki_1]
+lua require("top-bufferline")

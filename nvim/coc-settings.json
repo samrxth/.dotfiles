@@ -26,9 +26,11 @@
     "value": "  ",
     "enumMember": "  "
   },
+  "diagnostic.displayByAle": true,
+  "jedi.completion.resolveEagerly": true,
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
-  "explorer.file.git.showUntrackedFiles":true,
+  "explorer.file.git.showUntrackedFiles": true,
   "explorer.focus": true,
   "explorer.file.showHiddenFiles": true,
   "explorer.buffer.showHiddenBuffers": true,
@@ -37,5 +39,8 @@
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "v": "open:vsplit"
   },
-  "emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact"}
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact"
+  }
 }
