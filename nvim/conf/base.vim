@@ -1,3 +1,4 @@
+let g:mapleader = " "
 set guifont=FiraCode\ Nerd\ Font\ Mono:h17
 set guioptions-=m
 set guioptions-=T

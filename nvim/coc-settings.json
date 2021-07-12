@@ -26,8 +26,6 @@
     "value": "  ",
     "enumMember": "  "
   },
-  "diagnostic.displayByAle": true,
-  "jedi.completion.resolveEagerly": true,
   "explorer.width": 30,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.git.showUntrackedFiles": true,

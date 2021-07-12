@@ -3,7 +3,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'folke/which-key.nvim'
     Plug 'norcalli/nvim-base16.lua'
     Plug 'alvan/vim-closetag'
-    Plug 'dense-analysis/ale'
     Plug 'SirVer/ultisnips'
     Plug 'mlaursen/vim-react-snippets'
     Plug 'lewis6991/gitsigns.nvim'
@@ -43,5 +42,6 @@ call plug#end()
 colorscheme doom-one
 
 lua << EOF
+  vim.g.mapleader = " "
   require("which-key").setup {}
 EOF
