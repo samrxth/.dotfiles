@@ -1,6 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
+    Plug 'Avimitin/neovim-deus'
     Plug 'glepnir/dashboard-nvim'
-    Plug 'romgrk/doom-one.vim'
     Plug 'folke/which-key.nvim'
     Plug 'norcalli/nvim-base16.lua'
     Plug 'alvan/vim-closetag'
@@ -16,17 +16,15 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jremmen/vim-ripgrep'
     Plug 'tpope/vim-fugitive'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-    Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
-    Plug 'norcalli/nvim-base16.lua'
-    Plug 'kosayoda/nvim-lightbulb'
     Plug 'junegunn/goyo.vim'
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'ap/vim-css-color'
     Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+    Plug 'Avimitin/nerd-galaxyline'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
     Plug 'leafgarland/typescript-vim'
