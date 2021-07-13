@@ -48,7 +48,7 @@ if bufwinnr(1)
   tnoremap <silent> <C-K> :resize +4<CR>
 endif
 
-nnoremap <leader>dc :e ~/.config/nvim/init.vim<CR>
+nnoremap <leader>dc :e ~/.config/nvim/init.lua<CR>
 nnoremap <leader>ff :Telescope find_files hidden=true<CR>
 nnoremap <leader>fb :Telescope buffers<CR>
 nnoremap <leader>fh :Telescope help_tags<CR>
@@ -66,3 +66,7 @@ function! Save_popup()
 endfunction
 
 nnoremap <leader>o :call Save_popup()<CR>
+map <Up> <NOP>
+map <Down> <NOP>
+map <Left> <NOP>
+map <Right> <NOP>

@@ -20,9 +20,7 @@ return packer.startup(
         use "prettier/vim-prettier"
 
         -- color related stuff
-        use {
-            'shaunsingh/nord.nvim',
-        }
+        use "arcticicestudio/nord-vim"
 
         use "kyazdani42/nvim-web-devicons"
 
