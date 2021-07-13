@@ -13,7 +13,7 @@ return packer.startup(
 
         use "mlaursen/vim-react-snippets"
 
-        use "mlaursen/vim-react-snippets"
+        use "jremmen/vim-ripgrep"
 
         use "lukas-reineke/indent-blankline.nvim"
 
