@@ -1,3 +1,4 @@
+let g:python3_host_prog='/usr/local/bin/python3'
 let g:indentLine_fileTypeExclude = ['dashboard', 'coc-explorer']
 set guifont=FiraCode\ Nerd\ Font\ Mono:h17
 set guioptions-=m
