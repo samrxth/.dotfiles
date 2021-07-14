@@ -18,17 +18,10 @@ alias zrc="cd ~/zsh;vim ~/zsh/init.zsh"
 alias pdf="open -a Preview "
 source ~/antigen.zsh
 
-
-
 function push() {
     git add .
     git commit -a -m "$1"
     git push
-}
-
-function pandocc(){
-  pandoc --filter --citeproc --bibliography=paper.bib --variable classoption=twocolumn --variable papersize=a4paper -s \
-    $1 -o paper.pdf
 }
 
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -36,15 +29,13 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle agkozak/zsh-z
 antigen apply
 
+bindkey -v # vi-mode
 
-autoload -U colors && colors	# Load colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%} $%b "
-
-macchina
 
 
 source ~/zsh/completion.zsh
-source ~/zsh/bindings.zsh
+
+pfetch
 
 
 function updateDots() {
@@ -57,3 +48,6 @@ source $HOME/.cargo/env
 export PATH=/Users/sam/.node_modules/bin:$PATH
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+autoload -U promptinit; promptinit
+prompt pure

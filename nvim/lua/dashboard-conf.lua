@@ -22,6 +22,8 @@ g.dashboard_custom_section = {
     b = {description = {"  Recents                   SPC f o"}, command = "Telescope oldfiles"},
     c = {description = {"  Find Word                 SPC f w"}, command = "Telescope live_grep"},
     d = {description = {"洛 New File                  SPC f n"}, command = "DashboardNewFile"},
+    e = {description = {"洛 New buffer                SPC g g"}, command = ":enew"},
+    f = {description = {"💻 Go to configuration        SPC f w"}, command = ":e ~/.config/nvim/init.lua"},
 }
 
 g.dashboard_custom_footer = {
