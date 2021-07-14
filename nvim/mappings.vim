@@ -65,8 +65,38 @@ function! Save_popup()
   endif
 endfunction
 
-nnoremap <leader>o :call Save_popup()<CR>
+nnoremap <leader>og :call Save_popup()<CR>
 map <Up> <NOP>
 map <Down> <NOP>
 map <Left> <NOP>
 map <Right> <NOP>
+
+nnoremap <leader>` :call ChooseTerm("term-slider", 1)<CR>
+" Start terminal in current pane
+nnoremap <leader><CR> :call ChooseTerm("term-pane", 0)<CR>
+ 
+function! ChooseTerm(termname, slider)
+    let pane = bufwinnr(a:termname)
+    let buf = bufexists(a:termname)
+    if pane > 0
+        " pane is visible
+        if a:slider > 0
+            :exe pane . "wincmd c"
+        else
+            :exe "e #" 
+        endif
+    elseif buf > 0
+        " buffer is not in pane
+        if a:slider
+            :exe "botright split"
+        endif
+        :exe "buffer " . a:termname
+    else
+        " buffer is not loaded, create
+        if a:slider
+            :exe "botright split"
+        endif
+        :terminal
+        :exe "f " a:termname
+    endif
+endfunction

@@ -40,3 +40,16 @@ set shiftwidth=2
 set expandtab
 set relativenumber
 set nu rnu
+
+source ~/.config/nvim/mappings.vim"
+
+augroup terminalsettings
+	autocmd!
+	if has('nvim')
+		autocmd TermOpen *
+			\ setlocal nonumber norelativenumber |
+			\ startinsert
+	endif
+augroup end
+
+colorscheme nord

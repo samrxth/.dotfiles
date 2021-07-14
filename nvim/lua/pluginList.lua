@@ -24,6 +24,8 @@ return packer.startup(
 
         use "kyazdani42/nvim-web-devicons"
 
+        use "vimwiki/vimwiki"
+
         use {
           'lewis6991/gitsigns.nvim',
           requires = {
