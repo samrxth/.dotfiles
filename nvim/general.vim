@@ -54,3 +54,5 @@ augroup terminalsettings
 augroup end
 
 lua require('onedark').setup()
+
+hi Normal guibg=NONE ctermbg=NONE
