@@ -1,0 +1,2 @@
+require("which-key").setup {
+}

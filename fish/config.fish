@@ -14,6 +14,7 @@ alias l "ls"
 alias gs="git status"
 alias gd="git diff"
 alias gbr="git branch"
+alias gc="git clone"
 
 alias vrc="vim ~/.config/nvim/init.lua"
 alias frc="vim ~/.config/fish/config.fish"

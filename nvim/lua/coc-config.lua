@@ -9,7 +9,6 @@ vim.g.coc_global_extensions = {
   'coc-tabnine',
   'coc-explorer',
   'coc-vimlsp',
-  'coc-lua',
   'coc-html',
   'coc-css',
   'coc-pyright',

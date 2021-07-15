@@ -1,207 +1,128 @@
-local lualine = require'lualine'
+local get_diag = function(str)
+  local count = vim.lsp.diagnostic.get_count(0, str)
+  return (count > 0) and ' '..count..' ' or ''
+end
 
---nord
-local colors = {
- bg       = '#2E3440',
- fg       = '#ECEFF4',
- yellow   = '#EBCB8B',
- cyan     = '#8FBCBB',
- darkblue = '#5E81AC',
- green    = '#A3BE8C',
- orange   = '#D08770',
- violet   = '#81A1C1',
- magenta  = '#B48EAD',
- blue     = '#81A1C1';
- red      = '#BF616A';
-}
+local vi_mode_provider = function()
+    local mode_alias = {
+      n = 'NORMAL',
+      no = 'NORMAL',
+      i = 'INSERT',
+      v = 'VISUAL',
+      V = 'V-LINE',
+      [''] = 'V-BLOCK',
+      c = 'COMMAND',
+      cv = 'COMMAND',
+      ce = 'COMMAND',
+      R = 'REPLACE',
+      Rv = 'REPLACE',
+      s = 'SELECT',
+      S = 'SELECT',
+      [''] = 'SELECT',
+      t = 'TERMINAL',
+    }
+    return ' ' .. mode_alias[vim.fn.mode()] .. ' '
+end
 
-local conditions = {
-  buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
-  end,
-  hide_in_width = function()
-    return vim.fn.winwidth(0) > 80
-  end,
-  check_git_workspace = function()
-    local filepath = vim.fn.expand('%:p:h')
-    local gitdir = vim.fn.finddir('.git', filepath .. ';')
-    return gitdir and #gitdir > 0 and #gitdir < #filepath
-  end
-}
+local percentage_provider = function()
+  local cursor = require 'feline.providers.cursor'
+  return ' ' .. cursor.line_percentage() .. ' '
+end
 
--- Config
-local config = {
-  options = {
-    -- Disable sections and component separators
-    component_separators = "",
-    section_separators = "",
-    theme = {
-      -- We are going to use lualine_c and lualine_x as left and
-      -- right section. Both are highlighted by c theme .  So we
-      -- are just setting default looks o statusline
-      normal = { c = {fg = colors.fg, bg = colors.bg}},
-      inactive = { c = {fg = colors.fg, bg = colors.bg}}
+local vi_mode_hl = function()
+  local vi_mode = require 'feline.providers.vi_mode'
+  return {
+    name = vi_mode.get_mode_highlight_name(),
+    fg = 'bg',
+    bg = vi_mode.get_mode_color(),
+    style = 'bold',
+  }
+end
+
+require'feline'.setup {
+  default_fg = '#8FBCBB',
+  default_bg = '#434C5E',
+  colors = {
+    black = '#434C5E',
+    skyblue = '#81A1C1',
+    cyan = '#88C0D0',
+    green  = '#8FBCBB',
+    oceanblue = '#5E81AC',
+    magenta = '#B48EAD',
+    orange = '#D08770',
+    red = '#EC5F67',
+    violet = '#B48EAD',
+    white  = '#ECEFF4',
+    yellow = '#EBCB8B',
+  },
+  vi_mode_colors = {
+    NORMAL = 'cyan',
+    OP = 'cyan',
+    INSERT = 'white',
+    VISUAL = 'green',
+    BLOCK = 'green',
+    REPLACE = 'yellow',
+    ['V-REPLACE'] = 'yellow',
+    ENTER = 'cyan',
+    MORE = 'cyan',
+    SELECT = 'magenta',
+    COMMAND = 'cyan',
+    SHELL = 'skyblue',
+    TERM = 'skyblue',
+    NONE = 'orange',
+  },
+  components = {
+    left = {
+      active = {
+        { provider = vi_mode_provider, hl = vi_mode_hl, right_sep = ' ' },
+        { provider = 'git_branch' , icon = ' ', right_sep = '  ',
+          enabled = function() return vim.b.gitsigns_status_dict ~= nil end },
+        { provider = 'file_info' },
+        { provider = '' , hl = { fg = 'bg', bg = 'black' }},
+      },
+      inactive = {
+        { provider = vi_mode_provider, hl = vi_mode_hl, right_sep = ' ' },
+        { provider = 'git_branch' , icon = ' ', right_sep = '  ',
+          enabled = function() return vim.b.gitsigns_status_dict ~= nil end },
+        { provider = 'file_info' },
+        { provider = '' , hl = { fg = 'bg', bg = 'black' }},
+      }
+    },
+    right = {
+      active = {
+        { provider = function() return get_diag("Error") end,
+          hl = { fg = 'bg', bg = 'red', style = 'bold' },
+          left_sep = { str = '', hl = { fg = 'red', bg = 'black' }},
+          right_sep = { str = '', hl = { fg = 'yellow', bg = 'red' }}},
+        { provider = function() return get_diag("Warning") end,
+          hl = { fg = 'bg', bg = 'yellow', style = 'bold'  },
+          right_sep = { str = '', hl = { fg = 'cyan', bg = 'yellow' }}},
+        { provider = function() return get_diag("Information") end,
+          hl = { fg = 'bg', bg = 'cyan', style = 'bold' },
+          right_sep = { str = '', hl = { fg = 'oceanblue', bg = 'cyan' }}},
+        { provider = function() return get_diag("Hint") end,
+          hl = { fg = 'bg', bg = 'oceanblue', style = 'bold' },
+          right_sep = { str = '', hl = { fg = 'bg', bg = 'oceanblue', }}},
+        { provider = 'file_encoding', left_sep = ' ' },
+        { provider = 'position', left_sep = ' ', right_sep = ' ' },
+        { provider = percentage_provider,
+          hl = { fg = 'bg', bg = 'skyblue', style = 'bold' }},
+      },
+      inactive = {}
     },
   },
-  sections = {
-    -- these are to remove the defaults
-    lualine_a = {},
-    lualine_b = {},
-    lualine_y = {},
-    lualine_z = {},
-    -- These will be filled later
-    lualine_c = {},
-    lualine_x = {},
-  },
-  inactive_sections = {
-    -- these are to remove the defaults
-    lualine_a = {},
-    lualine_v = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {},
-  }
-}
-
--- Inserts a component in lualine_c at left section
-local function ins_left(component)
-  table.insert(config.sections.lualine_c, component)
-end
-
--- Inserts a component in lualine_x ot right section
-local function ins_right(component)
-  table.insert(config.sections.lualine_x, component)
-end
-
-ins_left {
- function() return '▊' end,
- color = {fg = colors.blue}, -- Sets highlighting of component
- left_padding = 0 -- We don't need space before this
-}
-
-ins_left {
-  -- mode component
-  function()
-    -- auto change color according to neovims mode
-    local mode_color = {
-      n      = colors.red,
-      i      = colors.green,
-      v      = colors.blue,
-      [''] = colors.blue,
-      V      = colors.blue,
-      c      = colors.magenta,
-      no     = colors.red,
-      s      = colors.orange,
-      S      = colors.orange,
-      [''] = colors.orange,
-      ic     = colors.yellow,
-      R      = colors.violet,
-      Rv     = colors.violet,
-      cv     = colors.red,
-      ce     = colors.red,
-      r      = colors.cyan,
-      rm     = colors.cyan,
-      ['r?'] = colors.cyan,
-      ['!']  = colors.red,
-      t      = colors.red
+  properties =  {
+    force_inactive = {
+      filetypes = {
+        'NvimTree',
+        'packer',
+        'dap-repl',
+        'dapui_scopes', 'dapui_stacks', 'dapui_watches', 'dapui_repl',
+        'LspTrouble',
+      },
+      buftypes = {'terminal'},
+      bufnames = {},
     }
-    vim.api.nvim_command('hi! LualineMode guifg='..mode_color[vim.fn.mode()] .. " guibg="..colors.bg)
-    return ''
-  end,
-  color = "LualineMode",
-  left_padding = 0,
+  },
 }
 
-ins_left {
-  -- filesize component
-  function()
-    local function format_file_size(file)
-      local size = vim.fn.getfsize(file)
-      if size <= 0 then return '' end
-      local sufixes = {'b', 'k', 'm', 'g'}
-      local i = 1
-      while size > 1024 do
-        size = size / 1024
-        i = i + 1
-      end
-      return string.format('%.1f%s', size, sufixes[i])
-    end
-    local file = vim.fn.expand('%:p')
-    if string.len(file) == 0 then return '' end
-    return format_file_size(file)
-  end,
-  condition = conditions.buffer_not_empty,
-}
-
-ins_left {
-'filetype', format = function() return " " end, right_padding=0
-}
-
-ins_left {
-  'filename',
-  condition = conditions.buffer_not_empty,
-  path = 1,
-  color = {fg = colors.yellow, gui = 'bold'},
-  left_padding=0
-}
-
-ins_left {
-  'location',
-  color = {fg = colors.darkblue, gui = 'bold'}
-}
-
-ins_left {
-  'progress',
-  color = {fg = colors.darkblue, gui = 'bold'},
-}
-
-ins_left {
-  'diagnostics',
-  sources = {'nvim_lsp'},
-  symbols = {error = ' ', warn = ' ', info= ' '},
-  color_error = colors.red,
-  color_warn = colors.yellow,
-  color_info = colors.cyan,
-}
-
-ins_right {
-  function() return 'LF' end,
-  color = {fg = colors.darkblue},
-}
-ins_right {
-  'fileformat', --same one just without the logo
-  icons_enabled = true,
-  color = {fg = colors.darkblue, gui='bold'},
-}
-
-ins_right {
-  'o:encoding', -- option component same as &encoding in viml
-  upper = true, -- I'm not sure why it's upper case either ;)
-  condition = conditions.hide_in_width,
-  color = {fg = colors.darkblue, gui = 'bold'}
-}
-
-ins_right {
-  'branch',
-  icon = '',
-  condition = conditions.check_git_workspace,
-  color = {fg = colors.green, gui = 'bold'},
-}
-
-ins_right {
-  'diff',
-  -- Is it me or the symbol for modified us really weird
-  symbols = {added= ' ', modified= ' ', removed= ' '},
-  color_added = colors.green,
-  color_modified = colors.orange,
-  color_removed = colors.red,
-  condition = conditions.hide_in_width
-}
-
-ins_right {
-  function() return '▊' end,
-  color = {fg = colors.blue},
-  right_padding = 0,
-}
-lualine.setup(config)

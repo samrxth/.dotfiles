@@ -53,4 +53,4 @@ augroup terminalsettings
 	endif
 augroup end
 
-colorscheme nord
+lua require('onedark').setup()

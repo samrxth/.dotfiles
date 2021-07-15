@@ -5,11 +5,17 @@ return packer.startup(
     function()
         use "wbthomason/packer.nvim"
 
+        use {
+          "folke/which-key.nvim",
+        }
+
         use "akinsho/nvim-bufferline.lua"
 
-        use "hoob3rt/lualine.nvim"
+        use 'ful1e5/onedark.nvim'
 
         use "jiangmiao/auto-pairs"
+
+        use 'famiu/feline.nvim'
 
         use "mlaursen/vim-react-snippets"
 
@@ -18,9 +24,6 @@ return packer.startup(
         use "lukas-reineke/indent-blankline.nvim"
 
         use "prettier/vim-prettier"
-
-        -- color related stuff
-        use "arcticicestudio/nord-vim"
 
         use "kyazdani42/nvim-web-devicons"
 
