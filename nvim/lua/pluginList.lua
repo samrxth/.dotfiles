@@ -7,9 +7,7 @@ return packer.startup(
 
         use "folke/which-key.nvim"
 
-        use "akinsho/nvim-bufferline.lua"
-
-        use "iamcco/markdown-preview.nvim"
+        use "romgrk/barbar.nvim"
 
         use "ful1e5/onedark.nvim"
 

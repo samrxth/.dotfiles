@@ -42,7 +42,7 @@ set expandtab
 set relativenumber
 set nu rnu
 
-source ~/.config/nvim/mappings.vim"
+source ~/.config/nvim/mappings.vim
 
 augroup terminalsettings
 	autocmd!
