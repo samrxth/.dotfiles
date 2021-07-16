@@ -9,6 +9,8 @@ return packer.startup(
 
         use "akinsho/nvim-bufferline.lua"
 
+        use "iamcco/markdown-preview.nvim"
+
         use "ful1e5/onedark.nvim"
 
         use "jiangmiao/auto-pairs"

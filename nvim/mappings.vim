@@ -12,6 +12,7 @@ nnoremap gn :bn<CR>
 nnoremap gp :bp<CR>
 nnoremap <leader>a ggVG
 nnoremap bd :bd<CR>
+tnoremap <Esc> <C-\><C-n>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -72,7 +73,6 @@ map <Left> <NOP>
 map <Right> <NOP>
 
 nnoremap <leader>` :call ChooseTerm("term-slider", 1)<CR>
-" Start terminal in current pane
 nnoremap <leader><CR> :call ChooseTerm("term-pane", 0)<CR>
  
 function! ChooseTerm(termname, slider)

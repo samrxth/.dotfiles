@@ -12,7 +12,7 @@ M.config = function()
                 "--column",
                 "--smart-case"
             },
-            prompt_prefix = "   ",
+            prompt_prefix = " > ",
             selection_caret = "  ",
             entry_prefix = "  ",
             initial_mode = "insert",
@@ -33,7 +33,7 @@ M.config = function()
                 preview_cutoff = 120
             },
             file_sorter = require "telescope.sorters".get_fuzzy_file,
-            file_ignore_patterns = {},
+            file_ignore_patterns = {"node_modules", "public"},
             generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
             shorten_path = true,
             winblend = 0,
