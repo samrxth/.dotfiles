@@ -1,2 +1,2 @@
 # .dotfiles
-My neovim, zsh, and iterm2 dotfiles :star2:!
+My neovim, fish, and iterm2 dotfiles :star2:!
