@@ -101,3 +101,5 @@ function! ChooseTerm(termname, slider)
         :exe "f " a:termname
     endif
 endfunction
+
+nnoremap <leader>cd :CocDiagnostics<CR>
