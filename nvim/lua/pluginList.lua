@@ -5,15 +5,18 @@ return packer.startup(
     function()
         use "wbthomason/packer.nvim"
 
-        use "folke/which-key.nvim"
+        use "folke/tokyonight.nvim"
 
-        use "romgrk/barbar.nvim"
+        use "folke/which-key.nvim"
 
         use "ful1e5/onedark.nvim"
 
         use "jiangmiao/auto-pairs"
 
-        use "famiu/feline.nvim"
+        use({
+          "hoob3rt/lualine.nvim",
+          requires = "nvim-web-devicons",
+        })
 
         use "mlaursen/vim-react-snippets"
 
@@ -43,6 +46,8 @@ return packer.startup(
           "nvim-telescope/telescope.nvim",
           requires = {{"nvim-lua/popup.nvim"}, {'nvim-lua/plenary.nvim'}}
         }
+
+        use {'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons'}
 
         use "neoclide/coc.nvim"
     end,
