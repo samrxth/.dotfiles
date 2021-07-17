@@ -74,6 +74,7 @@ map <Right> <NOP>
 
 nnoremap <leader>` :call ChooseTerm("term-slider", 1)<CR>
 nnoremap <leader><CR> :call ChooseTerm("term-pane", 0)<CR>
+nnoremap <leader>vv :Vista coc<CR>
  
 function! ChooseTerm(termname, slider)
     let pane = bufwinnr(a:termname)

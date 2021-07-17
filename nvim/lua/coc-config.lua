@@ -14,5 +14,6 @@ vim.g.coc_global_extensions = {
   'coc-css',
   'coc-pyright',
   'coc-highlight',
-  'coc-rls'
+  'coc-rls',
+  'coc-lua'
   }

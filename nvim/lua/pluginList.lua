@@ -5,6 +5,8 @@ return packer.startup(
     function()
         use "wbthomason/packer.nvim"
 
+        use "liuchengxu/vista.vim"
+
         use "folke/tokyonight.nvim"
 
         use "folke/which-key.nvim"
