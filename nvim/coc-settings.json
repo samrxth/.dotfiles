@@ -1,4 +1,8 @@
 {
+  "codeLens.enable": true,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
   "suggest.completionItemKindLabels": {
     "method": "   Method ",
     "function": "   Function ",

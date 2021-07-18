@@ -1,7 +1,9 @@
 alias c "clear"
 
-alias pip="pip3"
+alias pip "pip3"
 alias python "python3"
+
+alias rm "trash"
 
 alias vim "nvim"
 alias v "vim"
@@ -11,13 +13,13 @@ alias ls "logo-ls -A -D"
 alias ll "ls"
 alias l "ls"
 
-alias gs="git status"
-alias gd="git diff"
-alias gbr="git branch"
-alias gc="git clone"
+alias gs "git status"
+alias gd "git diff"
+alias gbr "git branch"
+alias gc "git clone"
 
-alias vrc="vim ~/.config/nvim/init.lua"
-alias frc="vim ~/.config/fish/config.fish"
+alias vrc "vim ~/.config/nvim/init.lua"
+alias frc "vim ~/.config/fish/config.fish"
 
 function push
     git add .
@@ -27,7 +29,7 @@ end
 funcsave push
 
 function updateDots
-    rsync -rv --exclude=plugged ~/.config/nvim ~/.dotfiles/
+    rsync -rv --exclude plugged ~/.config/nvim ~/.dotfiles/
     cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2/
     cp ~/.config/fish/config.fish ~/.dotfiles/fish
 end
