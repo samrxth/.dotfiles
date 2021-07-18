@@ -11,6 +11,13 @@ return packer.startup(
 
         use "folke/which-key.nvim"
 
+        use {
+          'lewis6991/gitsigns.nvim',
+          requires = {
+            'nvim-lua/plenary.nvim'
+          }
+        }
+
         use "ful1e5/onedark.nvim"
 
         use "jiangmiao/auto-pairs"
@@ -26,21 +33,13 @@ return packer.startup(
 
         use "lukas-reineke/indent-blankline.nvim"
 
+        use "lambdalisue/gina.vim"
+
         use "prettier/vim-prettier"
 
         use "kyazdani42/nvim-web-devicons"
 
         use "vimwiki/vimwiki"
-
-        use {
-          "lewis6991/gitsigns.nvim",
-          requires = {
-            "nvim-lua/plenary.nvim"
-          },
-          config = function()
-            require("gitsigns").setup()
-          end
-        }
 
         use "glepnir/dashboard-nvim"
 
