@@ -22,15 +22,16 @@ alias vrc "vim ~/.config/nvim/init.lua"
 alias frc "vim ~/.config/fish/config.fish"
 
 function push
-    git add .
-    git commit -m $argv
-    git push
+  git add .
+  git commit -m $argv
+  git push
 end
 funcsave push
 
 function updateDots
-    cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2/
-    cp ~/.config/fish/config.fish ~/.dotfiles/fish
+  rsync -rv --exclude plugged ~/.config/alacritty ~/.dotfiles/
+  cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2/
+  cp ~/.config/fish/config.fish ~/.dotfiles/fish
 end
 funcsave updateDots
     
