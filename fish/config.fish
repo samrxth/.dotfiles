@@ -21,6 +21,8 @@ alias gc "git clone"
 alias vrc "vim ~/.config/nvim/init.lua"
 alias frc "vim ~/.config/fish/config.fish"
 
+alias vf "vim (\"fzf\")"
+
 function push
   git add .
   git commit -m $argv
@@ -29,7 +31,7 @@ end
 funcsave push
 
 function updateDots
-  rsync -rv --exclude plugged ~/.config/alacritty ~/.dotfiles/
+  rsync -rv ~/.config/alacritty ~/.dotfiles/
   cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2/
   cp ~/.config/fish/config.fish ~/.dotfiles/fish
 end
@@ -50,3 +52,5 @@ funcsave tv
 fish_vi_key_bindings
 
 set -x GOPATH /users/sam/go
+echo ""
+unowns.py
