@@ -1,5 +1,7 @@
 alias c "clear"
 
+alias diskCheck "smartctl -a disk0 | grep \"Percentage Used\""
+
 alias pip "pip3"
 alias python "python3"
 
@@ -12,6 +14,12 @@ alias fn "rm -rf ~/.local/share/nvim/swap"
 alias ls "logo-ls -A -D"
 alias ll "ls"
 alias l "ls"
+alias s "ls"
+alias sl "ls"
+alias cls "c;echo ""; echo "" ;ls"
+
+
+alias fresh "c; echo "" ;unowns.py"
 
 alias gs "git status"
 alias gd "git diff"
@@ -31,7 +39,6 @@ end
 funcsave push
 
 function updateDots
-  rsync -rv ~/.config/alacritty ~/.dotfiles/
   cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2/
   cp ~/.config/fish/config.fish ~/.dotfiles/fish
 end
@@ -53,4 +60,4 @@ fish_vi_key_bindings
 
 set -x GOPATH /users/sam/go
 echo ""
-unowns.py
+/opt/homebrew/bin/unowns.py
