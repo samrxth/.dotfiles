@@ -17,6 +17,7 @@ alias l "ls"
 alias s "ls"
 alias sl "ls"
 alias cls "c;echo ""; echo "" ;ls"
+alias cl "c;echo ""; echo "" ;ls"
 
 
 alias fresh "c; echo "" ;unowns.py"
@@ -59,5 +60,3 @@ funcsave tv
 fish_vi_key_bindings
 
 set -x GOPATH /users/sam/go
-echo ""
-/opt/homebrew/bin/unowns.py
