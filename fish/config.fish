@@ -26,6 +26,7 @@ alias gs "git status"
 alias gd "git diff"
 alias gbr "git branch"
 alias gc "git clone"
+alias gl "git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate --date=short"
 
 alias vrc "vim ~/.config/nvim/init.lua"
 alias frc "vim ~/.config/fish/config.fish"
@@ -42,6 +43,7 @@ funcsave push
 function updateDots
   cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2/
   cp ~/.config/fish/config.fish ~/.dotfiles/fish
+  rsync  -rv ~/.config/nvim/lua/kyotorc/ ~/.dotfiles/kyotorc
 end
 funcsave updateDots
     
@@ -60,3 +62,22 @@ funcsave tv
 fish_vi_key_bindings
 
 set -x GOPATH /users/sam/go
+
+function removepath
+    if set -l index (contains -i $argv[1] $PATH)
+        set --erase --universal fish_user_paths[$index]
+        echo "Updated PATH: $PATH"
+    else
+        echo "$argv[1] not found in PATH: $PATH"
+    end
+end
+funcsave removepath
+
+function addpaths
+  set -U fish_user_paths $argv $fish_user_paths
+end
+funcsave addpaths
+
+function fish_greeting
+end
+funcsave fish_greeting
