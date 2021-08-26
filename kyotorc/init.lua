@@ -1,6 +1,9 @@
-vim.cmd("packadd zen-mode.nvim")
-vim.cmd("packadd vimwiki")
 vim.cmd("packadd formatter.nvim")
+vim.cmd("packadd twilight.nvim")
+vim.cmd("packadd vim-jsx-pretty")
+vim.cmd("packadd vimwiki")
+vim.cmd("packadd zen-mode.nvim")
+vim.cmd("packadd twilight.nvim")
 require("zen-mode").setup({})
 
 vim.cmd("nnoremap <leader>z :ZenMode<CR>")
@@ -63,7 +66,10 @@ vim.api.nvim_exec(
       autocmd!
       autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.rs,*.lua FormatWrite
       autocmd BufWritePre *.py execute ':Black'
+      au BufNewFile,BufRead *.prisma setfiletype graphql
     augroup END
   ]],
   true
 )
+
+require("lspconfig").prismals.setup({})

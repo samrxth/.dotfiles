@@ -1,5 +1,7 @@
 alias c "clear"
 
+alias postgresServer "/opt/homebrew/opt/postgresql/bin/postgres -D /opt/homebrew/var/postgres"
+
 alias diskCheck "smartctl -a disk0 | grep \"Percentage Used\""
 
 alias pip "pip3"
