@@ -21,6 +21,10 @@ alias sl "ls"
 alias cls "c;echo ""; echo "" ;ls"
 alias cl "c;echo ""; echo "" ;ls"
 
+alias y "yarn"
+alias yr "yarn run"
+alias ya "yarn add"
+alias yd "yarn remove"
 
 alias fresh "c; echo "" ;unowns.py"
 

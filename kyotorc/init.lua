@@ -9,7 +9,7 @@ require("zen-mode").setup({})
 vim.cmd("nnoremap <leader>z :ZenMode<CR>")
 -- require("lsp_signature").setup()
 
-local prettierFmt = function()
+local prettier = function()
   return {
     exe = "prettier",
     args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
@@ -17,26 +17,18 @@ local prettierFmt = function()
   }
 end
 
-local eslintFmt = function()
-  return {
-    exe = "eslint_d",
-    args = {
-      "--stdin",
-      "--stdin-filename",
-      vim.api.nvim_buf_get_name(0),
-      "--fix-to-stdout",
-    },
-    stdin = true,
-  }
-end
-
 require("formatter").setup({
   logging = false,
   filetype = {
-    typescript = { prettierFmt, eslintFmt },
-    typescriptreact = { prettierFmt, eslintFmt },
-    javascript = { prettierFmt, eslintFmt },
-    javascriptreact = { prettierFmt, eslintFmt },
+    javascript = { prettier },
+    javascriptreact = { prettier },
+    typescript = { prettier },
+    typescriptreact = { prettier },
+    python = {
+      function()
+        return { exe = "black", args = { "-q", "-" }, stdin = true }
+      end,
+    },
     rust = {
       -- Rustfmt
       function()
@@ -47,7 +39,6 @@ require("formatter").setup({
         }
       end,
     },
-    python = { exe = "black", stdin = false },
     lua = {
       function()
         return {
@@ -64,8 +55,7 @@ vim.api.nvim_exec(
   [[
     augroup FormatAutogroup
       autocmd!
-      autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.rs,*.lua FormatWrite
-      autocmd BufWritePre *.py execute ':Black'
+      autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.rs,*.py,*.lua FormatWrite
       au BufNewFile,BufRead *.prisma setfiletype graphql
     augroup END
   ]],
@@ -73,3 +63,4 @@ vim.api.nvim_exec(
 )
 
 require("lspconfig").prismals.setup({})
+require("lspconfig").tailwindcss.setup({})
