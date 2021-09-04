@@ -50,6 +50,7 @@ function updateDots
   cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2/
   cp ~/.config/fish/config.fish ~/.dotfiles/fish
   rsync  -rv ~/.config/nvim/lua/kyotorc/ ~/.dotfiles/kyotorc
+  rsync  -rv ~/.config/zathura/ ~/.dotfiles/zathura
 end
 funcsave updateDots
     

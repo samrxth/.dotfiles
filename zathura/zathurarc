@@ -1,0 +1,60 @@
+#  _____         __  __                    
+# /__  /  ______/ /_/ /_  __  _____________
+#   / /  / __  / __/ __ \/ / / / ___/ __  /
+#  / /__/ /_/ / /_/ / / / /_/ / /  / /_/ / 
+# /____/\__,_/\__/_/ /_/\__,_/_/   \__,_/  
+#                                                          
+# ZATHURA CONFIG (~/.config/zathura/zathurarc)
+# --------------------------------------------------------------------------
+
+# GENERAL SETTINGS
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+map D toggle_page_mode # p to change page mode
+map R reload # R to reload document
+map r rotate # r to rotate document
+map c recolor # C to change theme
+
+# --------------------------------------------------------------------------
+# COLORS
+set font "FiraCode Nerd Font Mono 13"
+set default-fg 			"#c0caf5"
+set default-bg 			"#24283b"
+
+set completion-bg		"#24283b"
+set completion-fg		"#c0caf5"
+set completion-highlight-bg	"#414868"
+set completion-highlight-fg	"#c0caf5"
+set completion-group-bg		"#24283b"
+set completion-group-fg		"#7aa2f7"
+
+set statusbar-fg		"#a9b1d6"
+set statusbar-bg		"#414868"
+set statusbar-h-padding		10
+set statusbar-v-padding		10
+
+set notification-bg		"#414868"
+set notification-fg		"#a9b1d6"
+set notification-error-bg	"#f7768e"
+set notification-error-fg	"#24283b"
+set notification-warning-bg	"#e0af68"
+set notification-warning-fg	"#24283b"
+
+set inputbar-fg			"#c0caf5"
+set inputbar-bg 		"#24283b"
+
+set recolor			"true"
+set recolor-lightcolor		"#24283b"
+set recolor-darkcolor		"#c0caf5"
+
+set index-fg			"#c0caf5"
+set index-bg			"#24283b"
+set index-active-fg		"#c0caf5"
+set index-active-bg		"#414868"
+
+set render-loading-bg		"#24283b"
+set render-loading-fg		"#c0caf5"
+
+set highlight-color		"#7aa2f7"
+set highlight-active-color	"#bb9af7"
