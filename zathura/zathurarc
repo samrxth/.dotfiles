@@ -11,10 +11,18 @@
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
+map r reload
+map R rotate
+map K zoom in
+map J zoom out
 map D toggle_page_mode # p to change page mode
 map R reload # R to reload document
 map r rotate # r to rotate document
 map c recolor # C to change theme
+map [fullscreen] n scroll down
+map [fullscreen] e scroll up
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
 
 # --------------------------------------------------------------------------
 # COLORS
@@ -43,10 +51,6 @@ set notification-warning-fg	"#24283b"
 
 set inputbar-fg			"#c0caf5"
 set inputbar-bg 		"#24283b"
-
-set recolor			"true"
-set recolor-lightcolor		"#24283b"
-set recolor-darkcolor		"#c0caf5"
 
 set index-fg			"#c0caf5"
 set index-bg			"#24283b"

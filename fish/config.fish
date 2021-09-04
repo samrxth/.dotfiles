@@ -39,6 +39,8 @@ alias frc "vim ~/.config/fish/config.fish"
 
 alias vf "vim (\"fzf\")"
 
+alias za "nohup zathura & exit"
+
 function push
   git add .
   git commit -m $argv
