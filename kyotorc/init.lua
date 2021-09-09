@@ -4,6 +4,10 @@ vim.cmd("packadd vim-jsx-pretty")
 vim.cmd("packadd vimwiki")
 vim.cmd("packadd zen-mode.nvim")
 vim.cmd("packadd twilight.nvim")
+vim.cmd("packadd vim-prisma")
+vim.cmd(
+  'command OrganizeImports lua vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})'
+)
 require("zen-mode").setup({})
 
 vim.cmd("nnoremap <leader>z :ZenMode<CR>")
@@ -12,7 +16,7 @@ vim.cmd("nnoremap <leader>z :ZenMode<CR>")
 local prettier = function()
   return {
     exe = "prettier",
-    args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
+    args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
     stdin = true,
   }
 end
@@ -62,5 +66,6 @@ vim.api.nvim_exec(
   true
 )
 
-require("lspconfig").prismals.setup({})
-require("lspconfig").tailwindcss.setup({})
+require("lspconfig").prismals.setup(coq.lsp_ensure_capabilities({
+  cmd = { "prisma-language-server", "--stdio", "--nolazy", "--inspect=6009" },
+}))
