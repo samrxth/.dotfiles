@@ -24,6 +24,7 @@ end
 require("formatter").setup({
   logging = false,
   filetype = {
+    json = { prettier },
     javascript = { prettier },
     javascriptreact = { prettier },
     typescript = { prettier },
@@ -59,7 +60,7 @@ vim.api.nvim_exec(
   [[
     augroup FormatAutogroup
       autocmd!
-      autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.rs,*.py,*.lua FormatWrite
+      autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.rs,*.py,*.lua,*.json FormatWrite
       au BufNewFile,BufRead *.prisma setfiletype graphql
     augroup END
   ]],
