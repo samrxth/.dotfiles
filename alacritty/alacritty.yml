@@ -3,6 +3,7 @@ window:
   padding:
     x: 10
     y: 10
+  decorations: buttonless
 font:
   normal:
     family: FiraCode Nerd Font Mono
