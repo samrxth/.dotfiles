@@ -69,3 +69,7 @@ vim.api.nvim_exec(
 require("lspconfig").prismals.setup(coq.lsp_ensure_capabilities({
   cmd = { "prisma-language-server", "--stdio", "--nolazy", "--inspect=6009" },
 }))
+
+local dap_install = require("dap-install")
+dap_install.config("python", {})
+dap_install.config("chrome", {})
