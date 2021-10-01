@@ -41,6 +41,9 @@ alias vf "vim (\"fzf\")"
 
 alias za "nohup zathura & exit"
 
+alias t "tmux"
+alias tmuxReload "tmux source-file ~/.tmux.conf"
+
 function push
   git add .
   git commit -m $argv
@@ -72,8 +75,6 @@ funcsave tv
 
 fish_vi_key_bindings
 
-set -x GOPATH /users/sam/go
-
 function removepath
     if set -l index (contains -i $argv[1] $PATH)
         set --erase --universal fish_user_paths[$index]
@@ -92,3 +93,17 @@ funcsave addpaths
 function fish_greeting
 end
 funcsave fish_greeting
+
+function export
+    if [ $argv ] 
+        set var (echo $argv | cut -f1 -d=)
+        set val (echo $argv | cut -f2 -d=)
+        set -g -x $var $val
+    else
+        echo 'export var=value'
+    end
+end
+funcsave export
+
+export GOPATH=/users/sam/go
+export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"

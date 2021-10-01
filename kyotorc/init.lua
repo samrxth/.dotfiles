@@ -1,13 +1,14 @@
-vim.cmd("packadd formatter.nvim")
 vim.cmd("packadd twilight.nvim")
 vim.cmd("packadd vim-jsx-pretty")
 vim.cmd("packadd vimwiki")
 vim.cmd("packadd zen-mode.nvim")
 vim.cmd("packadd twilight.nvim")
-vim.cmd("packadd vim-prisma")
+vim.cmd("packadd diagnosticls-configs-nvim")
+
 vim.cmd(
   'command OrganizeImports lua vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}})'
 )
+
 require("zen-mode").setup({})
 
 vim.cmd("nnoremap <leader>z :ZenMode<CR>")
@@ -21,56 +22,66 @@ local prettier = function()
   }
 end
 
-require("formatter").setup({
-  logging = false,
-  filetype = {
-    json = { prettier },
-    javascript = { prettier },
-    javascriptreact = { prettier },
-    typescript = { prettier },
-    typescriptreact = { prettier },
-    python = {
-      function()
-        return { exe = "black", args = { "-q", "-" }, stdin = true }
-      end,
-    },
-    rust = {
-      -- Rustfmt
-      function()
-        return {
-          exe = "rustfmt",
-          args = { "--emit=stdout" },
-          stdin = true,
-        }
-      end,
-    },
-    lua = {
-      function()
-        return {
-          exe = "stylua",
-          args = { "--config-path", "/Users/sam/.config/nvim/stylua.toml", "-" },
-          stdin = true,
-        }
-      end,
-    },
+require("lspconfig").prismals.setup({
+  cmd = { "prisma-language-server", "--stdio", "--nolazy", "--inspect=6009" },
+})
+
+local eslint = {
+  sourceName = "eslint",
+  command = "eslint_d",
+  rootPatterns = { ".eslintrc.js", "package.json" },
+  debounce = 100,
+  args = { "--stdin", "--stdin-filename", "%filepath", "--format", "json" },
+  parseJson = {
+    errorsRoot = "[0].messages",
+    line = "line",
+    column = "column",
+    endLine = "endLine",
+    endColumn = "endColumn",
+    message = "${message} [${ruleId}]",
+    security = "severity",
+  },
+  securities = { [2] = "error", [1] = "warning" },
+}
+local flake = require("diagnosticls-configs.linters.flake8")
+
+prettier = require("diagnosticls-configs.formatters.prettier")
+local stylua = require("diagnosticls-configs.formatters.stylua")
+local autopep8 = require("diagnosticls-configs.formatters.autopep8")
+local eslint_fmt = require("diagnosticls-configs.formatters.eslint_fmt")
+
+local dlsconfig = require("diagnosticls-configs")
+
+dlsconfig.init({})
+dlsconfig.setup({
+  ["json"] = {
+    formatter = prettier,
+  },
+  ["javascript"] = {
+    linter = eslint,
+    formatter = { prettier, eslint_fmt },
+  },
+  ["javascriptreact"] = {
+    linter = eslint,
+    formatter = { prettier, eslint_fmt },
+  },
+  ["typescript"] = {
+    linter = eslint,
+    formatter = { prettier, eslint_fmt },
+  },
+  ["typescriptreact"] = {
+    linter = eslint,
+    formatter = { prettier, eslint_fmt },
+  },
+  ["python"] = {
+    linter = flake,
+    formatter = autopep8,
+  },
+  ["lua"] = {
+    formatter = stylua,
   },
 })
 
-vim.api.nvim_exec(
-  [[
-    augroup FormatAutogroup
-      autocmd!
-      autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.rs,*.py,*.lua,*.json FormatWrite
-      au BufNewFile,BufRead *.prisma setfiletype graphql
-    augroup END
-  ]],
-  true
+vim.cmd(
+  "autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.rs,*.py,*.lua,*.json lua vim.lsp.buf.formatting()"
 )
-
-require("lspconfig").prismals.setup(coq.lsp_ensure_capabilities({
-  cmd = { "prisma-language-server", "--stdio", "--nolazy", "--inspect=6009" },
-}))
-
-local dap_install = require("dap-install")
-dap_install.config("python", {})
-dap_install.config("chrome", {})
