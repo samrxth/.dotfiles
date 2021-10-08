@@ -91,10 +91,6 @@ function addpaths
 end
 funcsave addpaths
 
-function fish_greeting
-end
-funcsave fish_greeting
-
 function export
     if [ $argv ] 
         set var (echo $argv | cut -f1 -d=)
