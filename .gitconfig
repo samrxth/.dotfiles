@@ -1,0 +1,13 @@
+[user]
+	name = samrath2007
+	email = samrath1324@gmail.com
+
+[pager]
+    diff = delta
+    show = delta
+    log = delta
+    blame = delta
+    reflog = delta
+
+[interactive]
+    diffFilter = delta --color-only
