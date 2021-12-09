@@ -1,6 +1,6 @@
 local M = {}
 
-M.on_attach = function (client, bufnr)
+M.on_attach = function(client, bufnr)
   client.resolved_capabilities.document_formatting = false
 
   local function buf_set_option(...)
@@ -10,7 +10,7 @@ M.on_attach = function (client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+  vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 end
 
 local function organize_imports()
@@ -70,7 +70,7 @@ M.tsserver = {
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
-  client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_formatting = false
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
   end,
   commands = {
@@ -137,12 +137,12 @@ M.sumneko_lua = {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { "vim" },
+        globals = { "vim", "map" },
       },
     },
-    on_attach = M.on_attach
+    on_attach = M.on_attach,
   },
-  on_attach = M.on_attach
+  on_attach = M.on_attach,
 }
 
 M.prismals = {

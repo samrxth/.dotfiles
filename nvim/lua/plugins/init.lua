@@ -125,9 +125,9 @@ require("onenord").setup({
     functions = "italic", -- Style that is applied to functions: see `highlight-args` for options
     diagnostics = "undercurl", -- Style that is applied to diagnostics: see `highlight-args` for options
   },
-  disable = {
-    background = true, -- Disable setting the background color
-  },
+  -- disable = {
+  --   background = true, -- Disable setting the background color
+  -- },
 })
 
 require("indent_blankline").setup({
