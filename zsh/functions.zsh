@@ -4,6 +4,7 @@ function updateDots() {
     cp ~/.tmux.conf ~/.dotfiles/tmux/tmux.conf
     rsync -rv ~/zsh ~/.dotfiles
     rsync -rv ~/.config/nvim ~/.dotfiles
+    rsync -rv ~/.config/discocss ~/.dotfiles
     rsync -rv ~/.config/fish ~/.dotfiles
     rsync -rv ~/.config/kitty ~/.dotfiles
     rsync -rv ~/.config/zathura/ ~/.dotfiles/zathura
