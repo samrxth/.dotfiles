@@ -25,7 +25,6 @@ opt.foldmethod = "manual"
 opt.nu = true
 opt.rnu = true
 opt.completeopt = "menu,menuone,noselect"
-opt.shell = "/bin/zsh"
 vim.cmd("set wildcharm=<Tab>")
 
 local disabled_built_ins = {

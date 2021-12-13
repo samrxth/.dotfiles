@@ -39,13 +39,14 @@ require("packer").startup(function(use)
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
   })
-  use({
-    "nvim-telescope/telescope.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-lua/popup.nvim",
-    },
-  })
+  use({ "camspiers/snap" })
+  -- use({
+  --   "nvim-telescope/telescope.nvim",
+  --   requires = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-lua/popup.nvim",
+  --   },
+  -- })
 
   -- Git related plugins
   use("lewis6991/gitsigns.nvim")
@@ -104,32 +105,12 @@ require("plugins.lsp-saga")
 require("plugins.treesitter")
 require("plugins.zenmode")
 require("plugins.trouble-nvim")
-require("plugins.telescope-nvim")
+-- require("plugins.telescope-nvim")
 require("plugins.comments")
 require("plugins.whichkey")
 require("plugins.coq3p")
 require("plugins.statusline")
+require("plugins.snap")
+require("plugins.onenord")
+require("plugins.indent-blankline")
 require("presence"):setup()
-
-vim.opt.list = true
-vim.opt.list = true
-vim.opt.listchars:append("space:⋅")
-
-require("onenord").setup({
-  custom_highlights = {
-    LspDiagnosticsUnderlineError = { style = "undercurl" },
-  },
-  styles = {
-    comments = "italic", -- Style that is applied to comments: see `highlight-args` for options
-    keywords = "italic", -- Style that is applied to keywords: see `highlight-args` for options
-    functions = "italic", -- Style that is applied to functions: see `highlight-args` for options
-    diagnostics = "undercurl", -- Style that is applied to diagnostics: see `highlight-args` for options
-  },
-  -- disable = {
-  --   background = true, -- Disable setting the background color
-  -- },
-})
-
-require("indent_blankline").setup({
-  space_char_blankline = " ",
-})

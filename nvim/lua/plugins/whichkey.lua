@@ -72,12 +72,10 @@ require("which-key").register({
   -- fc-commands, fz-current_buff_fuzzy_find, fs-workspacesymols;
   f = {
     name = "+Search",
-    b = "Find buffer",
     f = "Find file",
-    g = "Find changed file",
-    i = "Find text in current workspace",
     o = "Find recent files",
-    s = "Find symbols in the current workspace",
+    i = "Find text in current workspace",
+    b = "Find buffer",
   },
   g = {
     name = "definitions",
