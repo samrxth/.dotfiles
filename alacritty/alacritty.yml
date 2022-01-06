@@ -1,7 +1,7 @@
 background_opacity: 0.9
 window:
   padding:
-    x: 10
+    x: 20
     y: 10
   decorations: buttonless
 font:

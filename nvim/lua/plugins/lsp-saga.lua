@@ -9,11 +9,7 @@ map(
   "<space>ca",
   '<cmd>lua require("telescope.builtin").lsp_code_actions()<cr>'
 )
-map(
-  "v",
-  "<leader>ca",
-  '<cmd>lua require("telescope.builtin").lsp_range_code_actions()<cr>'
-)
+map("v", "<leader>ca", ":Lspsaga code_action <CR>")
 map("n", "K", ":Lspsaga hover_doc<CR>")
 map("n", "gs", ":Lspsaga signature_help<CR>")
 map("n", "gr", ":Lspsaga rename<CR>")

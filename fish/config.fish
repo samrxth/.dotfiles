@@ -8,7 +8,7 @@ alias vim nvim
 alias v vim
 alias fn "rm -rf ~/.local/share/nvim/swap"
 alias lg lazygit
-alias ls "logo-ls -A -D"
+alias ls "lsd -A"
 alias ll ls
 alias l ls
 alias s ls

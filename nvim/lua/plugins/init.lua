@@ -80,7 +80,10 @@ require("packer").startup(function(use)
   -- use("ful1e5/onedark.nvim")
   -- use("rmehri01/onenord.nvim")
   -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
-  use("rmehri01/onenord.nvim")
+  use({
+    "catppuccin/nvim",
+    as = "catppuccin",
+  })
 
   -- Productivity
   use("vimwiki/vimwiki")
@@ -111,6 +114,6 @@ require("plugins.whichkey")
 require("plugins.coq3p")
 require("plugins.statusline")
 require("plugins.snap")
-require("plugins.onenord")
+require("plugins.colorscheme")
 require("plugins.indent-blankline")
 require("presence"):setup()
