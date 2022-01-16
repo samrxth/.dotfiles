@@ -32,6 +32,8 @@ map("n", "<leader>p", '"*p')
 map("n", "<leader>a", "ggVG")
 map("n", "<leader>bd", ":bd<CR>")
 map("t", "<leader><Esc>", "<C-\\><C-n>")
+map("n", "<leader><CR>", ":Lspsaga toggle_floaterm<CR>")
+map("t", "<leader><CR>", "<C-\\><C-n>:Lspsaga toggle_floaterm<CR>")
 
 map(
   "n",

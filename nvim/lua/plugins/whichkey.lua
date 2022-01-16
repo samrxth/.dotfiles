@@ -66,7 +66,6 @@ require("which-key").register({
     name = "+Code Action",
     a = "Code Actions",
     c = "Cursor Diagnostics",
-    d = "Line Diagnostics",
   },
   e = "Show Line diagnostics",
   -- fc-commands, fz-current_buff_fuzzy_find, fs-workspacesymols;

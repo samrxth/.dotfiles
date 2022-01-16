@@ -1,4 +1,4 @@
-alias c clear
+alias c "TERM='xterm' clear"
 alias postgresServer "/opt/homebrew/opt/postgresql@13/bin/postgres -D /opt/homebrew/var/postgresql@13"
 alias diskCheck "smartctl -a disk0 | grep \"Percentage Used\""
 alias pip pip3
@@ -16,9 +16,9 @@ alias sl ls
 alias cls "c;echo ""; echo "" ;ls"
 alias cl "c;echo ""; echo "" ;ls"
 alias y yarn
-alias yr "yarn run"
-alias ya "yarn add"
-alias yd "yarn remove"
+alias yr "pnpm run"
+alias ya "pnpm i"
+alias yd "pnpm remove"
 alias fresh "c; echo "" ;unowns.py"
 alias gs "git status"
 alias gd "git diff"
@@ -31,6 +31,7 @@ alias vf "vim (\"fzf\")"
 alias za "nohup zathura & exit"
 alias t tmux
 alias tmuxReload "tmux source-file ~/.tmux.conf"
+alias factorial "python ~/code/factorial.py"
 
 function push
     git add .

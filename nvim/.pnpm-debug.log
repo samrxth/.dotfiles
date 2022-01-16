@@ -1,0 +1,14 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+    "err": {
+      "name": "pnpm",
+      "message": "No package.json (or package.yaml, or package.json5) was found in \"/Users/sam/.config/nvim\".",
+      "code": "ERR_PNPM_NO_IMPORTER_MANIFEST_FOUND",
+      "stack": "pnpm: No package.json (or package.yaml, or package.json5) was found in \"/Users/sam/.config/nvim\".\n    at readProjectManifest (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.3/node_modules/pnpm/dist/pnpm.cjs:19790:13)\n    at async Object.readProjectManifestOnly (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.3/node_modules/pnpm/dist/pnpm.cjs:19794:28)\n    at async readProjectManifestOnly (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.3/node_modules/pnpm/dist/pnpm.cjs:43556:24)\n    at async Object.handler (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.3/node_modules/pnpm/dist/pnpm.cjs:179442:24)\n    at async /opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.3/node_modules/pnpm/dist/pnpm.cjs:183657:21\n    at async run (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.3/node_modules/pnpm/dist/pnpm.cjs:183631:34)\n    at async runPnpm (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.3/node_modules/pnpm/dist/pnpm.cjs:183843:5)\n    at async /opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.3/node_modules/pnpm/dist/pnpm.cjs:183835:7"
+    }
+  }
+}

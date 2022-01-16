@@ -2,8 +2,8 @@
 nnoremap <silent><leader>` :call ChooseTerm("term-slider", 1)<CR>
 tnoremap <silent><leader>` <C-\><C-n>:call ChooseTerm("term-slider", 1)<CR>
 " Create/Toggle a terminal in a buffer 
-nnoremap <silent><leader><CR> :call ChooseTerm("term-pane", 0)<CR>
-tnoremap <silent><leader><CR> <C-\><C-n>:call ChooseTerm("term-pane", 0)<CR>
+" nnoremap <silent><leader><CR> :call ChooseTerm("term-pane", 0)<CR>
+" tnoremap <silent><leader><CR> <C-\><C-n>:call ChooseTerm("term-pane", 0)<CR>
 
 " Terminal Toggle
 function! ChooseTerm(termname, slider)

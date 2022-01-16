@@ -33,6 +33,7 @@ require("packer").startup(function(use)
     run = ":TSUpdate",
   })
   use("pantharshit00/vim-prisma")
+  use("maxmellon/vim-jsx-pretty")
 
   -- File finders
   use({
@@ -55,7 +56,7 @@ require("packer").startup(function(use)
 
   -- UI
   use({
-    "nvim-lualine/lualine.nvim",
+    "feline-nvim/feline.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
   use({
@@ -80,10 +81,6 @@ require("packer").startup(function(use)
   -- use("ful1e5/onedark.nvim")
   -- use("rmehri01/onenord.nvim")
   -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
-  use({
-    "catppuccin/nvim",
-    as = "catppuccin",
-  })
 
   -- Productivity
   use("vimwiki/vimwiki")
@@ -99,6 +96,7 @@ require("packer").startup(function(use)
   use("numToStr/Comment.nvim")
   use("folke/which-key.nvim")
   use("andweeb/presence.nvim")
+  use("NvChad/nvim-base16.lua")
 end)
 
 require("plugins.icons")
@@ -114,6 +112,6 @@ require("plugins.whichkey")
 require("plugins.coq3p")
 require("plugins.statusline")
 require("plugins.snap")
-require("plugins.colorscheme")
 require("plugins.indent-blankline")
 require("presence"):setup()
+require("colors").init()

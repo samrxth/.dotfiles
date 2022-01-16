@@ -1,8 +1,7 @@
 local g = vim.g
 
--- g.tokyonight_transparent = true
--- g.tokyonight_italic_keywords = true
--- g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+g.theme = "onedark"
+g.statusline_style = "default"
 
 g.vimwiki_list = {
   {
