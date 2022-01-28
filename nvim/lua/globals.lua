@@ -1,6 +1,6 @@
 local g = vim.g
 
-g.theme = "onedark"
+g.theme = "gruvbox"
 g.statusline_style = "default"
 
 g.vimwiki_list = {

@@ -40,14 +40,13 @@ require("packer").startup(function(use)
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
   })
-  use({ "camspiers/snap" })
-  -- use({
-  --   "nvim-telescope/telescope.nvim",
-  --   requires = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-lua/popup.nvim",
-  --   },
-  -- })
+  use({
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-lua/popup.nvim",
+    },
+  })
 
   -- Git related plugins
   use("lewis6991/gitsigns.nvim")
@@ -59,6 +58,7 @@ require("packer").startup(function(use)
     "feline-nvim/feline.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
+  -- use("sidebar-nvim/sidebar.nvim")
   use({
     "romgrk/barbar.nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
@@ -106,12 +106,13 @@ require("plugins.lsp-saga")
 require("plugins.treesitter")
 require("plugins.zenmode")
 require("plugins.trouble-nvim")
--- require("plugins.telescope-nvim")
+require("plugins.telescope-nvim")
 require("plugins.comments")
 require("plugins.whichkey")
 require("plugins.coq3p")
 require("plugins.statusline")
-require("plugins.snap")
+-- require("plugins.snap")
 require("plugins.indent-blankline")
+-- require("plugins.sidebar")
 require("presence"):setup()
 require("colors").init()

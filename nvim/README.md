@@ -32,6 +32,14 @@ cd ~/.config/nvim
 nvim + "PackerInstall"
 ```
 
+## :clap: Supporters
+
+[![Stargazers repo roster for https://github.com/samrath2007/nvim](https://reporoster.com/stars/samrath2007/nvim)](https://github.com/https://github.com/samrath2007/nvim/stargazers)
+
+[![Forkers repo roster for https://github.com/samrath2007/nvim](https://reporoster.com/forks/samrath2007/nvim)](https://github.com/https://github.com/samrath2007/nvim/network/members)
+
+<br>
+
 ## License
 
 This project is licensed under the GNU General Public License v2 - see the [LICENSE](LICENSE) file for details.
