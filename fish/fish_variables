@@ -5,9 +5,9 @@ SETUVAR _fisher_acomagu_2F_fish_2D_async_2D_prompt_files:/Users/sam/\x2econfig/f
 SETUVAR _fisher_franciscolourenco_2F_done_files:/Users/sam/\x2econfig/fish/conf\x2ed/done\x2efish
 SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:/Users/sam/\x2econfig/fish/functions/_autopair_backspace\x2efish\x1e/Users/sam/\x2econfig/fish/functions/_autopair_insert_left\x2efish\x1e/Users/sam/\x2econfig/fish/functions/_autopair_insert_right\x2efish\x1e/Users/sam/\x2econfig/fish/functions/_autopair_insert_same\x2efish\x1e/Users/sam/\x2econfig/fish/functions/_autopair_tab\x2efish\x1e/Users/sam/\x2econfig/fish/conf\x2ed/autopair\x2efish
 SETUVAR _fisher_plugins:jorgebucaran/autopair\x2efish\x1eacomagu/fish\x2dasync\x2dprompt\x1efranciscolourenco/done
+SETUVAR _hydro_git_43612:main\u2022\x20
 SETUVAR _hydro_git_80529:main\u2022\x20
 SETUVAR _hydro_git_82824:main\x20
-SETUVAR _hydro_git_9747:dev\x20
 SETUVAR fish_color_cwd_root:red
 SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_host_remote:yellow
@@ -15,4 +15,4 @@ SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrbl
 SETUVAR fish_color_status:red
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
 SETUVAR fish_key_bindings:fish_vi_key_bindings
-SETUVAR fish_user_paths:flutter/bin/\x1e/opt/homebrew/bin/\x1e/Users/sam/\x2ecargo/bin/\x1e/Users/sam/\x2edotfiles/color\x2dscripts/\x1e/Users/sam/\x2ecargo/bin/\x1ebin/\x1e/Users/sam/\x2ecargo/bin/\x1e/opt/homebrew/opt/node\x4016/bin/\x1e/opt/homebrew/opt/mysql\x2dclient/bin\x1e/Users/sam/\x2efig/bin
+SETUVAR fish_user_paths:/opt/homebrew/opt/node\x4016/bin\x1eflutter/bin/\x1e/opt/homebrew/bin/\x1e/Users/sam/\x2ecargo/bin/\x1e/Users/sam/\x2edotfiles/color\x2dscripts/\x1e/Users/sam/\x2ecargo/bin/\x1ebin/\x1e/Users/sam/\x2ecargo/bin/\x1e/opt/homebrew/opt/node\x4016/bin/\x1e/opt/homebrew/opt/mysql\x2dclient/bin\x1e/Users/sam/\x2efig/bin

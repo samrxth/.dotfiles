@@ -16,9 +16,9 @@ alias sl ls
 alias cls "c;echo ""; echo "" ;ls"
 alias cl "c;echo ""; echo "" ;ls"
 alias y yarn
-alias yr "pnpm run"
-alias ya "pnpm i"
-alias yd "pnpm remove"
+alias yr "yarn run"
+alias ya "yarn add"
+alias yd "yarn remove"
 alias fresh "c; echo "" ;unowns.py"
 alias gs "git status"
 alias gd "git diff"
@@ -31,7 +31,8 @@ alias vf "vim (\"fzf\")"
 alias za "nohup zathura & exit"
 alias t tmux
 alias tmuxReload "tmux source-file ~/.tmux.conf"
-alias factorial "python ~/code/factorial.py"
+alias factorial "python ~/code/factorial/factorial.py"
+alias t="todo.sh"
 
 function push
     git add .
@@ -50,6 +51,7 @@ function updateDots
     rsync -rv ~/.config/fish ~/.dotfiles
     rsync -rv ~/.config/kitty ~/.dotfiles
     rsync -rv ~/.config/zathura/ ~/.dotfiles/zathura
+    rsync -rv ~/BACKGROUNDS ~/.dotfiles/backgrounds
 end
 funcsave updateDots
 
@@ -113,3 +115,4 @@ starship init fish | source
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+fish_add_path /opt/homebrew/opt/node@16/bin

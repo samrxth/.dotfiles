@@ -8,4 +8,5 @@ function updateDots
     rsync -rv ~/.config/fish ~/.dotfiles
     rsync -rv ~/.config/kitty ~/.dotfiles
     rsync -rv ~/.config/zathura/ ~/.dotfiles/zathura
+    rsync -rv ~/BACKGROUNDS ~/.dotfiles/backgrounds
 end
