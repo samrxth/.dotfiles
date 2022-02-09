@@ -30,9 +30,29 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 require("null-ls").setup({
   sources = {
+    require("null-ls").builtins.formatting.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({ "**/.eslint_drc*" })
+      end,
+    }),
     require("null-ls").builtins.formatting.stylua,
-    require("null-ls").builtins.formatting.prettier,
-    require("null-ls").builtins.diagnostics.eslint,
+    require("null-ls").builtins.formatting.prettier_d_slim,
+    require("null-ls").builtins.diagnostics.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({ "**/.eslintrc*" })
+      end,
+    }),
     require("null-ls").builtins.completion.spell,
+  },
+})
+
+require("lspconfig").emmet_ls.setup({
+  filetypes = {
+    "html",
+    "css",
+    "jsx",
+    "tsx",
+    "javascriptreact",
+    "typescriptreact",
   },
 })

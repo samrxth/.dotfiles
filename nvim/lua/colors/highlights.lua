@@ -70,10 +70,10 @@ fg("NvimInternalError", red)
 fg("VertSplit", one_bg2)
 
 -- transparency
--- bg("Normal", "NONE")
--- bg("Folded", "NONE")
--- fg("Folded", "NONE")
--- fg("Comment", grey)
+bg("Normal", "NONE")
+bg("Folded", "NONE")
+fg("Folded", "NONE")
+fg("Comment", grey)
 
 -- [[ Plugin Highlights
 
