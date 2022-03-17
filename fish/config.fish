@@ -32,7 +32,7 @@ alias za "nohup zathura & exit"
 alias t tmux
 alias tmuxReload "tmux source-file ~/.tmux.conf"
 alias factorial "python ~/code/factorial/factorial.py"
-alias t="todo.sh"
+alias rnDebugger "unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=' ||" 
 
 function push
     git add .
@@ -40,6 +40,12 @@ function push
     git push
 end
 funcsave push
+
+function rn_debugger
+    unset ELECTRON_RUN_AS_NODE
+# use the arguement as port number
+    open -g 'rndebugger://set-debugger-loc?port=19001'
+end
 
 function updateDots
     cp ~/.config/iterm2/com.googlecode.iterm2.plist ~/.dotfiles/iterm2/
