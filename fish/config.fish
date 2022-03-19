@@ -56,8 +56,7 @@ function updateDots
     rsync -rv ~/.config/discocss ~/.dotfiles
     rsync -rv ~/.config/fish ~/.dotfiles
     rsync -rv ~/.config/kitty ~/.dotfiles
-    rsync -rv ~/.config/zathura/ ~/.dotfiles/zathura
-    rsync -rv ~/BACKGROUNDS ~/.dotfiles/backgrounds
+    rsync -rv ~/BACKGROUNDS ~/.dotfiles
 end
 funcsave updateDots
 
