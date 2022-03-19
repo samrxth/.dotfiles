@@ -11,7 +11,7 @@ concurrency:
 
 defaults:
   run:
-    working-directory: nvim
+    working-directory: ./nvim
 
 jobs:
   lint:
