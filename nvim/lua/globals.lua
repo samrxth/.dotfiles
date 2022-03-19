@@ -1,6 +1,6 @@
 local g = vim.g
 
-g.theme = "chadracula"
+g.theme = "everforest"
 g.statusline_style = "default"
 
 g.vimwiki_list = {
