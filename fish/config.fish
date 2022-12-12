@@ -39,7 +39,6 @@ function push
     git commit -m $argv
     git push
 end
-funcsave push
 
 function rn_debugger
     unset ELECTRON_RUN_AS_NODE
@@ -58,19 +57,16 @@ function updateDots
     rsync -rv ~/.config/kitty ~/.dotfiles
     rsync -rv ~/BACKGROUNDS ~/.dotfiles
 end
-funcsave updateDots
 
 function mkcd
     mkdir $argv
     cd $argv
 end
-funcsave mkcd
 
 function tv
     touch $argv
     vim $argv
 end
-funcsave tv
 
 fish_vi_key_bindings
 
@@ -82,16 +78,13 @@ function removepath
         echo "$argv[1] not found in PATH: $PATH"
     end
 end
-funcsave removepath
 
 function addpaths
     set -U fish_user_paths $argv $fish_user_paths
 end
-funcsave addpaths
 
 function fish_greeting
 end
-funcsave fish_greeting
 
 function export
     if [ $argv ]
@@ -102,7 +95,6 @@ function export
         echo 'export var=value'
     end
 end
-funcsave export
 
 export GOPATH=/users/sam/go
 export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"

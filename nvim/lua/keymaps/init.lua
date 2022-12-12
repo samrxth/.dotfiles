@@ -69,6 +69,7 @@ map("n", "k", "gk")
 -- Command aliases
 -- For saving
 cnoreabbrev("W", "w")
+cnoreabbrev("Jfm", "!google-java-format -a -r %")
 cnoreabbrev("wq", "w<bar>bd")
 cnoreabbrev("Wq", "w<bar>bd")
 cnoreabbrev("WQ", "w<bar>bd")

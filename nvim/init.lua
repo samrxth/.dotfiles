@@ -21,3 +21,4 @@ require("lspconf")
 
 require("keymaps")
 require("autocmds")
+require("colors")

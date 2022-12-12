@@ -30,6 +30,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 require("null-ls").setup({
   sources = {
+    require("null-ls").builtins.formatting.google_java_format,
     require("null-ls").builtins.formatting.eslint_d.with({
       condition = function(utils)
         return utils.root_has_file({ "**/.eslint_drc*" })

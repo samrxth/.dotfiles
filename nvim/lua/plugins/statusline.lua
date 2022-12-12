@@ -1,396 +1,389 @@
-local colors = require("colors").get()
+local feline = require("feline")
+
 local lsp = require("feline.providers.lsp")
-local lsp_severity = vim.diagnostic.severity
+local vi_mode_utils = require("feline.providers.vi_mode")
+local colors = require("colors").colors
+local signs = require("utils").signs
+local powerline = require("utils").powerline.triangle
 
-local icon_styles = {
-  default = {
-    left = "",
-    right = " ",
-    main_icon = "  ",
-    vi_mode_icon = " ",
-    position_icon = " ",
-  },
-  arrow = {
-    left = "",
-    right = "",
-    main_icon = "  ",
-    vi_mode_icon = " ",
-    position_icon = " ",
-  },
-
-  block = {
-    left = " ",
-    right = " ",
-    main_icon = "   ",
-    vi_mode_icon = "  ",
-    position_icon = "  ",
-  },
-
-  round = {
-    left = "",
-    right = "",
-    main_icon = "  ",
-    vi_mode_icon = " ",
-    position_icon = " ",
-  },
-
-  slant = {
-    left = " ",
-    right = " ",
-    main_icon = "  ",
-    vi_mode_icon = " ",
-    position_icon = " ",
-  },
+local vi_mode_colors = {
+  NORMAL = colors.cyan,
+  INSERT = colors.green,
+  VISUAL = colors.magenta,
+  OP = colors.green,
+  BLOCK = colors.blue,
+  REPLACE = colors.orange,
+  ["V-REPLACE"] = colors.orange,
+  ENTER = colors.cyan,
+  MORE = colors.cyan,
+  SELECT = colors.yellow,
+  COMMAND = colors.green,
+  SHELL = colors.red,
+  TERM = colors.red,
+  NONE = colors.yellow,
 }
 
-local statusline_style = icon_styles[vim.g.statusline_style or "default"]
-
--- show short statusline on small screens
-local shortline = true
-
--- Initialize the components table
-local components = {
-  active = {},
-  inactive = {},
+local vi_mode_text = {
+  n = "NORMAL",
+  i = "INSERT",
+  v = "VISUAL",
+  [""] = "V-BLOCK",
+  V = "V-LINE",
+  c = "COMMAND",
+  no = "UNKNOWN",
+  s = "SELECT",
+  S = "SELECT",
+  ic = "UNKNOWN",
+  R = "REPLACE",
+  Rv = "VIRTUAL",
+  cv = "UNKWON",
+  ce = "UNKNOWN",
+  r = "REPLACE",
+  rm = "--MORE",
+  t = "TERMINAL",
 }
 
-table.insert(components.active, {})
-table.insert(components.active, {})
-table.insert(components.active, {})
+local icons = {
+  linux = " ",
+  macos = " ",
+  windows = " ",
 
-components.active[1][1] = {
-  provider = statusline_style.main_icon,
+  indent = "הּ",
 
-  hl = {
-    fg = colors.statusline_bg,
-    bg = colors.nord_blue,
-  },
+  errors = signs.Error,
+  warns = signs.Warn,
+  infos = signs.Info,
+  hints = signs.Hint,
 
-  right_sep = {
-    str = statusline_style.right,
-    hl = {
-      fg = colors.nord_blue,
-      bg = colors.lightbg,
-    },
+  lsp = "",
+  git = {
+    branch = "",
+    added = " ",
+    modified = " ",
+    removed = " ",
   },
 }
 
-components.active[1][2] = {
-  provider = function()
-    local filename = vim.fn.expand("%:t")
-    local extension = vim.fn.expand("%:e")
-    local icon = require("nvim-web-devicons").get_icon(filename, extension)
-    if icon == nil then
-      icon = " "
-      return icon
-    end
-    return " " .. icon .. " " .. filename .. " "
-  end,
-  enabled = shortline or function(winid)
-    return vim.api.nvim_win_get_width(tonumber(winid) or 0) > 70
-  end,
-  hl = {
-    fg = colors.white,
-    bg = colors.lightbg,
-  },
+local function file_osinfo()
+  local os = vim.bo.fileformat:upper()
+  local icon
+  if os == "UNIX" then
+    icon = icons.linux
+  elseif os == "MAC" then
+    icon = icons.macos
+  else
+    icon = icons.windows
+  end
+  return icon .. os
+end
 
-  right_sep = {
-    str = statusline_style.right,
-    hl = { fg = colors.lightbg, bg = colors.lightbg2 },
-  },
-}
-
-components.active[1][3] = {
-  provider = function()
-    local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-    return "  " .. dir_name .. " "
-  end,
-
-  enabled = shortline or function(winid)
-    return vim.api.nvim_win_get_width(tonumber(winid) or 0) > 80
-  end,
-
-  hl = {
-    fg = colors.grey_fg2,
-    bg = colors.lightbg2,
-  },
-  right_sep = {
-    str = statusline_style.right,
-    hi = {
-      fg = colors.lightbg2,
-      bg = colors.statusline_bg,
-    },
-  },
-}
-
-components.active[1][4] = {
-  provider = "git_diff_added",
-  hl = {
-    fg = colors.grey_fg2,
-    bg = colors.statusline_bg,
-  },
-  icon = " ",
-}
--- diffModfified
-components.active[1][5] = {
-  provider = "git_diff_changed",
-  hl = {
-    fg = colors.grey_fg2,
-    bg = colors.statusline_bg,
-  },
-  icon = "   ",
-}
--- diffRemove
-components.active[1][6] = {
-  provider = "git_diff_removed",
-  hl = {
-    fg = colors.grey_fg2,
-    bg = colors.statusline_bg,
-  },
-  icon = "  ",
-}
-
-components.active[1][7] = {
-  provider = "diagnostic_errors",
-  enabled = function()
-    return lsp.diagnostics_exist(lsp_severity.ERROR)
-  end,
-
-  hl = { fg = colors.red },
-  icon = "  ",
-}
-
-components.active[1][8] = {
-  provider = "diagnostic_warnings",
-  enabled = function()
-    return lsp.diagnostics_exist(lsp_severity.WARN)
-  end,
-  hl = { fg = colors.yellow },
-  icon = "  ",
-}
-
-components.active[1][9] = {
-  provider = "diagnostic_hints",
-  enabled = function()
-    return lsp.diagnostics_exist(lsp_severity.HINT)
-  end,
-  hl = { fg = colors.grey_fg2 },
-  icon = "  ",
-}
-
-components.active[1][10] = {
-  provider = "diagnostic_info",
-  enabled = function()
-    return lsp.diagnostics_exist(lsp_severity.INFO)
-  end,
-  hl = { fg = colors.green },
-  icon = "  ",
-}
-
-components.active[2][1] = {
-  provider = function()
-    local Lsp = vim.lsp.util.get_progress_messages()[1]
-
-    if Lsp then
-      local msg = Lsp.message or ""
-      local percentage = Lsp.percentage or 0
-      local title = Lsp.title or ""
-      local spinners = {
-        "",
-        "",
-        "",
-      }
-
-      local success_icon = {
-        "",
-        "",
-        "",
-      }
-
-      local ms = vim.loop.hrtime() / 1000000
-      local frame = math.floor(ms / 120) % #spinners
-
-      if percentage >= 70 then
-        return string.format(
-          " %%<%s %s %s (%s%%%%) ",
-          success_icon[frame + 1],
-          title,
-          msg,
-          percentage
-        )
-      end
-
-      return string.format(
-        " %%<%s %s %s (%s%%%%) ",
-        spinners[frame + 1],
-        title,
-        msg,
-        percentage
-      )
-    end
-
-    return ""
-  end,
-  enabled = shortline or function(winid)
-    return vim.api.nvim_win_get_width(tonumber(winid) or 0) > 80
-  end,
-  hl = { fg = colors.green },
-}
-
-components.active[3][1] = {
-  provider = function()
-    if next(vim.lsp.buf_get_clients()) ~= nil then
-      return "  LSP"
-    else
-      return ""
-    end
-  end,
-  enabled = shortline or function(winid)
-    return vim.api.nvim_win_get_width(tonumber(winid) or 0) > 70
-  end,
-  hl = { fg = colors.grey_fg2, bg = colors.statusline_bg },
-}
-
-components.active[3][2] = {
-  provider = "git_branch",
-  enabled = shortline or function(winid)
-    return vim.api.nvim_win_get_width(tonumber(winid) or 0) > 70
-  end,
-  hl = {
-    fg = colors.grey_fg2,
-    bg = colors.statusline_bg,
-  },
-  icon = "  ",
-}
-
-components.active[3][3] = {
-  provider = " " .. statusline_style.left,
-  hl = {
-    fg = colors.one_bg2,
-    bg = colors.statusline_bg,
-  },
-}
-
-local mode_colors = {
-  ["n"] = { "NORMAL", colors.red },
-  ["no"] = { "N-PENDING", colors.red },
-  ["i"] = { "INSERT", colors.dark_purple },
-  ["ic"] = { "INSERT", colors.dark_purple },
-  ["t"] = { "TERMINAL", colors.green },
-  ["v"] = { "VISUAL", colors.cyan },
-  ["V"] = { "V-LINE", colors.cyan },
-  [""] = { "V-BLOCK", colors.cyan },
-  ["R"] = { "REPLACE", colors.orange },
-  ["Rv"] = { "V-REPLACE", colors.orange },
-  ["s"] = { "SELECT", colors.nord_blue },
-  ["S"] = { "S-LINE", colors.nord_blue },
-  [""] = { "S-BLOCK", colors.nord_blue },
-  ["c"] = { "COMMAND", colors.pink },
-  ["cv"] = { "COMMAND", colors.pink },
-  ["ce"] = { "COMMAND", colors.pink },
-  ["r"] = { "PROMPT", colors.teal },
-  ["rm"] = { "MORE", colors.teal },
-  ["r?"] = { "CONFIRM", colors.teal },
-  ["!"] = { "SHELL", colors.green },
-}
-
-local chad_mode_hl = function()
+local function get_lsp_diagnostics()
   return {
-    fg = mode_colors[vim.fn.mode()][2],
-    bg = colors.one_bg,
+    errors = lsp.get_diagnostics_count("Error"),
+    warns = lsp.get_diagnostics_count("Warn"),
+    infos = lsp.get_diagnostics_count("Info"),
+    hints = lsp.get_diagnostics_count("Hint"),
   }
 end
 
-components.active[3][4] = {
-  provider = statusline_style.left,
-  hl = function()
-    return {
-      fg = mode_colors[vim.fn.mode()][2],
-      bg = colors.one_bg2,
-    }
-  end,
-}
+local function render_diagnostics(fn, type)
+  local icon = icons[type]
+  return function()
+    local diag = fn()[type]
+    return icon .. " " .. diag
+  end
+end
 
-components.active[3][5] = {
-  provider = statusline_style.vi_mode_icon,
-  hl = function()
-    return {
-      fg = colors.statusline_bg,
-      bg = mode_colors[vim.fn.mode()][2],
-    }
-  end,
-}
-
-components.active[3][6] = {
-  provider = function()
-    return " " .. mode_colors[vim.fn.mode()][1] .. " "
-  end,
-  hl = chad_mode_hl,
-}
-
-components.active[3][7] = {
-  provider = statusline_style.left,
-  enabled = shortline or function(winid)
-    return vim.api.nvim_win_get_width(tonumber(winid) or 0) > 90
-  end,
-  hl = {
-    fg = colors.grey,
-    bg = colors.one_bg,
-  },
-}
-
-components.active[3][8] = {
-  provider = statusline_style.left,
-  enabled = shortline or function(winid)
-    return vim.api.nvim_win_get_width(tonumber(winid) or 0) > 90
-  end,
-  hl = {
-    fg = colors.green,
-    bg = colors.grey,
-  },
-}
-
-components.active[3][9] = {
-  provider = statusline_style.position_icon,
-  enabled = shortline or function(winid)
-    return vim.api.nvim_win_get_width(tonumber(winid) or 0) > 90
-  end,
-  hl = {
-    fg = colors.black,
-    bg = colors.green,
-  },
-}
-
-components.active[3][10] = {
-  provider = function()
-    local current_line = vim.fn.line(".")
-    local total_line = vim.fn.line("$")
-
-    if current_line == 1 then
-      return " Top "
-    elseif current_line == vim.fn.line("$") then
-      return " Bot "
+local conditions = {
+  diagnostic_enable = function(fn, type)
+    return function()
+      local diagnostics_count = fn()[type]
+      return diagnostics_count and diagnostics_count ~= 0
     end
-    local result, _ = math.modf((current_line / total_line) * 100)
-    return " " .. result .. "%% "
   end,
-
-  enabled = shortline or function(winid)
-    return vim.api.nvim_win_get_width(tonumber(winid) or 0) > 90
+  buffer_not_empty = function()
+    return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
   end,
+  check_git_workspace = function()
+    local filepath = vim.fn.expand("%:p:h")
+    local gitdir = vim.fn.finddir(".git", filepath .. ";")
+    return gitdir and #gitdir > 0 and #gitdir < #filepath
+  end,
+}
 
-  hl = {
-    fg = colors.green,
-    bg = colors.one_bg,
+local comps = {
+  vi_mode = {
+    sep = {
+      left = {
+        provider = " ",
+        hl = function()
+          return {
+            name = vi_mode_utils.get_mode_highlight_name(),
+            bg = vi_mode_utils.get_mode_color(),
+          }
+        end,
+      },
+      right = {
+        provider = " ",
+        hl = function()
+          return {
+            name = vi_mode_utils.get_mode_highlight_name(),
+            bg = vi_mode_utils.get_mode_color(),
+          }
+        end,
+      },
+    },
+    text = {
+      provider = function()
+        local current_text = vi_mode_text[vim.fn.mode()] .. " "
+        return current_text
+      end,
+      hl = function()
+        return {
+          name = vi_mode_utils.get_mode_highlight_name(),
+          fg = vi_mode_utils.get_mode_color(),
+          bg = colors.grey14,
+          style = "bold",
+        }
+      end,
+      left_sep = {
+        str = " ",
+        hl = {
+          bg = colors.grey14,
+        },
+      },
+
+      right_sep = powerline.right,
+    },
+  },
+
+  file = {
+    info = {
+      provider = "file_info",
+      left_sep = " ",
+      right_sep = " ",
+      hl = {
+        fg = colors.blue,
+        style = "bold",
+      },
+    },
+    encoding = {
+      provider = "file_encoding",
+      left_sep = " ",
+      right_sep = " ",
+    },
+    type = {
+      provider = "file_type",
+      left_sep = " ",
+      right_sep = " ",
+    },
+    os = {
+      provider = file_osinfo,
+      left_sep = " ",
+      right_sep = " ",
+      hl = {
+        fg = colors.grey9,
+        style = "bold",
+      },
+    },
+    indent_size = {
+      icon = "הּ",
+      provider = function()
+        return " " .. vim.opt.tabstop:get()
+      end,
+      left_sep = " ",
+      right_sep = " ",
+      hl = { fg = colors.grey9 },
+    },
+    size = {
+      provider = "file_size",
+      left_sep = " ",
+      right_sep = " ",
+    },
+    position = {
+      provider = "position",
+      left_sep = " ",
+      right_sep = " ",
+    },
+  },
+  line_percentage = {
+    provider = "line_percentage",
+    left_sep = " ",
+    right_sep = " ",
+    hl = {
+      style = "bold",
+    },
+  },
+  scroll_bar = {
+    provider = "scroll_bar",
+    hl = {
+      style = "bold",
+    },
+  },
+  diagnostics = {
+    error = {
+      provider = render_diagnostics(get_lsp_diagnostics, "errors"),
+      left_sep = " ",
+      enabled = conditions.diagnostic_enable(get_lsp_diagnostics, "errors"),
+      hl = {
+        fg = colors.red,
+      },
+    },
+    warn = {
+      provider = render_diagnostics(get_lsp_diagnostics, "warns"),
+      left_sep = " ",
+      enabled = conditions.diagnostic_enable(get_lsp_diagnostics, "warns"),
+      hl = {
+        fg = colors.yellow,
+      },
+    },
+    info = {
+      provider = render_diagnostics(get_lsp_diagnostics, "infos"),
+      left_sep = " ",
+      enabled = conditions.diagnostic_enable(get_lsp_diagnostics, "infos"),
+      hl = {
+        fg = colors.blue,
+      },
+    },
+    hint = {
+      provider = render_diagnostics(get_lsp_diagnostics, "hints"),
+      left_sep = " ",
+      enabled = conditions.diagnostic_enable(get_lsp_diagnostics, "hints"),
+      hl = {
+        fg = colors.cyan,
+      },
+    },
+  },
+  lsp = {
+    name = {
+      provider = "lsp_client_names",
+      left_sep = " ",
+      right_sep = " ",
+      icon = icons.lsp .. " ",
+      hl = {
+        fg = colors.grey9,
+      },
+    },
+  },
+  git = {
+    branch = {
+      provider = "git_branch",
+      icon = icons.git.branch .. " ",
+      enabled = conditions.check_git_workspace(),
+      hl = {
+        fg = colors.magenta,
+        bg = colors.grey14,
+        style = "bold",
+      },
+      left_sep = {
+        str = " ",
+        hl = {
+          bg = colors.grey14,
+        },
+      },
+      right_sep = {
+        str = " ",
+        hl = {
+          bg = colors.grey14,
+        },
+      },
+    },
+    add = {
+      provider = "git_diff_added",
+      hl = {
+        fg = colors.green,
+        bg = colors.grey14,
+      },
+      icon = icons.git.added,
+      left_sep = {
+        str = " ",
+        hl = {
+          bg = colors.grey14,
+        },
+      },
+    },
+    change = {
+      provider = "git_diff_changed",
+      hl = {
+        fg = colors.orange,
+        bg = colors.grey14,
+      },
+      icon = icons.git.modified,
+      left_sep = {
+        str = " ",
+        hl = {
+          bg = colors.grey14,
+        },
+      },
+    },
+    remove = {
+      provider = "git_diff_removed",
+      hl = {
+        fg = colors.red,
+        bg = colors.grey14,
+      },
+      icon = icons.git.removed,
+      left_sep = {
+        str = " ",
+        hl = {
+          bg = colors.grey14,
+        },
+      },
+    },
   },
 }
 
-require("feline").setup({
-  theme = {
-    bg = colors.statusline_bg,
-    fg = colors.fg,
+local properties = {
+  force_inactive = {
+    filetypes = {},
+    buftypes = { "terminal" },
+    bufnames = {},
   },
-  components = components,
-})
+}
 
-components.inactive[1] = components.active[1]
+feline.setup({
+  theme = {
+    fg = colors.grey9,
+    bg = colors.grey13,
+  },
+  highlight_reset_triggers = {},
+  components = {
+    active = {
+      {
+        comps.vi_mode.sep.left,
+        comps.vi_mode.text,
+        comps.file.type,
+        comps.file.info,
+        comps.file.size,
+        comps.line_percentage,
+        comps.scroll_bar,
+        comps.file.position,
+        comps.diagnostics.error,
+        comps.diagnostics.warn,
+        comps.diagnostics.hint,
+        comps.diagnostics.info,
+      },
+      {
+        comps.lsp.name,
+        comps.file.os,
+        comps.file.encoding,
+        comps.file.indent_size,
+        comps.git.add,
+        comps.git.change,
+        comps.git.remove,
+        comps.git.branch,
+        comps.vi_mode.sep.right,
+      },
+    },
+    inactive = {
+      {
+        comps.vi_mode.left,
+        comps.vi_mode_text,
+        comps.file.info,
+      },
+      {},
+    },
+  },
+  properties = properties,
+  vi_mode_colors = vi_mode_colors,
+})

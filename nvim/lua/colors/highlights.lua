@@ -73,7 +73,7 @@ fg("VertSplit", one_bg2)
 bg("Normal", "NONE")
 bg("Folded", "NONE")
 fg("Folded", "NONE")
-fg("Comment", grey)
+fg("Comment", grey_fg)
 
 -- [[ Plugin Highlights
 
