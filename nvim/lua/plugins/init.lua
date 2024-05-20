@@ -4,7 +4,8 @@ require("packer").startup(function(use)
 
   -- Lsp
   use("neovim/nvim-lspconfig")
-  use("williamboman/nvim-lsp-installer")
+  -- use("williamboman/nvim-lsp-installer")
+  use ("williamboman/mason.nvim")
   use("tami5/lspsaga.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
   use({
@@ -29,7 +30,6 @@ require("packer").startup(function(use)
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use({
     "nvim-treesitter/nvim-treesitter",
-    branch = "0.5-compat",
     run = ":TSUpdate",
   })
   use("pantharshit00/vim-prisma")
@@ -54,16 +54,11 @@ require("packer").startup(function(use)
   use("APZelos/blamer.nvim")
 
   -- UI
-  use({
-    "feline-nvim/feline.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
-  })
   -- use("sidebar-nvim/sidebar.nvim")
-  use({
-    "romgrk/barbar.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    config = function() end,
-  })
+  -- use({
+    -- "romgrk/barbar.nvim",
+    -- requires = { "kyazdani42/nvim-web-devicons" },
+  -- })
   use({
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
@@ -74,7 +69,7 @@ require("packer").startup(function(use)
       { "MunifTanjim/nui.nvim" },
     },
   })
-  use("lukas-reineke/indent-blankline.nvim")
+  -- use("lukas-reineke/indent-blankline.nvim")
 
   -- Colorschemes
   -- use("folke/tokyonight.nvim")
@@ -82,7 +77,8 @@ require("packer").startup(function(use)
   -- use("rmehri01/onenord.nvim")
   -- use({ "eddyekofo94/gruvbox-flat.nvim", branch = "local" })
   -- use("NvChad/nvim-base16.lua")
-  use("rmehri01/onenord.nvim")
+  -- use("rmehri01/onenord.nvim")
+  use("luisiacc/gruvbox-baby")
 
   -- Productivity
   use("vimwiki/vimwiki")
@@ -97,7 +93,13 @@ require("packer").startup(function(use)
   })
   use("numToStr/Comment.nvim")
   use("folke/which-key.nvim")
-  use("andweeb/presence.nvim")
+  use ({
+    "pmizio/typescript-tools.nvim",
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      require("typescript-tools").setup {}
+    end,
+  })
 end)
 
 require("plugins.icons")
@@ -111,8 +113,6 @@ require("plugins.telescope-nvim")
 require("plugins.comments")
 require("plugins.whichkey")
 require("plugins.coq3p")
-require("plugins.statusline")
 -- require("plugins.snap")
 require("plugins.indent-blankline")
 -- require("plugins.sidebar")
-require("presence"):setup()

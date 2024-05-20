@@ -2,45 +2,41 @@ local g = vim.g
 
 g.theme = "onedark"
 g.statusline_style = "default"
-
-g.vimwiki_list = {
-  {
-    path = "~/Documents/vimwiki",
-    syntax = "markdown",
-    ext = ".md",
-    custom_wiki2html = "vimwiki_markdown",
-    template_ext = ".md",
-  },
-  {
-    path = "~/Desktop/1M1B/plans/",
-    syntax = "markdown",
-    ext = ".md",
-    custom_wiki2html = "vimwiki_markdown",
-    template_ext = ".md",
-  },
-  {
-    path = "~/Desktop/1M1B/government-schemes",
-    syntax = "markdown",
-    ext = ".md",
-    custom_wiki2html = "vimwiki_markdown",
-    template_ext = ".md",
-  },
-  {
-    path = "~/Documents/vimwiki/coding",
-    syntax = "markdown",
-    ext = ".md",
-    custom_wiki2html = "vimwiki_markdown",
-    template_ext = ".md",
-  },
-  {
-    path = "~/code/indocs",
-    syntax = "markdown",
-    ext = ".md",
-    path_html = "~/code/indocs/",
-    custom_wiki2html = "vimwiki_markdown",
-    template_ext = ".md",
-  },
-}
+--
+-- g.vimwiki_list = {
+--   {
+--     path = "~/Documents/vimwiki",
+--   },
+--   {
+--     path = "~/Desktop/1M1B/plans/",
+--     syntax = "markdown",
+--     ext = ".md",
+--     custom_wiki2html = "vimwiki_markdown",
+--     template_ext = ".md",
+--   },
+--   {
+--     path = "~/Desktop/1M1B/government-schemes",
+--     syntax = "markdown",
+--     ext = ".md",
+--     custom_wiki2html = "vimwiki_markdown",
+--     template_ext = ".md",
+--   },
+--   {
+--     path = "~/Documents/vimwiki/coding",
+--     syntax = "markdown",
+--     ext = ".md",
+--     custom_wiki2html = "vimwiki_markdown",
+--     template_ext = ".md",
+--   },
+--   {
+--     path = "~/code/indocs",
+--     syntax = "markdown",
+--     ext = ".md",
+--     path_html = "~/code/indocs/",
+--     custom_wiki2html = "vimwiki_markdown",
+--     template_ext = ".md",
+--   },
+-- }
 
 g.lsp_config = {
   lua = {

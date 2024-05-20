@@ -12,7 +12,4 @@ require("nvim-treesitter.configs").setup({
       lookahead = true,
     },
   },
-  context_commentstring = {
-    enable = true,
-  },
 })

@@ -4,7 +4,7 @@ g.mapleader = " "
 
 require("globals")
 require("utils")
-require("plugins.barbar")
+-- require("plugins.barbar")
 require("options")
 require("plugins")
 
@@ -21,4 +21,6 @@ require("lspconf")
 
 require("keymaps")
 require("autocmds")
-require("colors")
+-- require("colors")
+require("plugins.colorscheme")
+

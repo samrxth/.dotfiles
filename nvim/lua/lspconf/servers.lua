@@ -9,12 +9,14 @@ local function on_attach(client, bufnr)
   vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 end
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-  server:setup(require("lspconf.config")[server.name] or {
-    on_attach = on_attach,
-    settings = {},
-  })
+require("mason").setup()
 
-  vim.cmd([[ do User LspAttachBuffers ]])
-end)
+-- local lsp_installer = require("nvim-lsp-installer")
+-- lsp_installer.on_server_ready(function(server)
+--   server:setup(require("lspconf.config")[server.name] or {
+--     on_attach = on_attach,
+--     settings = {},
+--   })
+--
+--   vim.cmd([[ do User LspAttachBuffers ]])
+-- end)

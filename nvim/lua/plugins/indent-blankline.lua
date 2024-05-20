@@ -2,6 +2,5 @@ vim.opt.list = true
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 
-require("indent_blankline").setup({
-  space_char_blankline = " ",
-})
+-- require("indent_blankline").setup({
+-- })

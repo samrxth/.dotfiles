@@ -2,7 +2,6 @@
 require("nvim-tree").setup({
   disable_netrw = false,
   hijack_netrw = false,
-  ignore_ft_on_setup = {},
   update_cwd = true,
   update_focused_file = {
     enable = true,
@@ -11,10 +10,6 @@ require("nvim-tree").setup({
   view = {
     width = 45,
     side = "left",
-    mappings = {
-      custom_only = false,
-      list = {},
-    },
   },
 })
 

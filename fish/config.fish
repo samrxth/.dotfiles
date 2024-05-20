@@ -1,8 +1,13 @@
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
+
 alias c "TERM='xterm' clear"
+alias sa "open /Applications/Safari.app/"
+alias cgd "cd \"/Users/samrath/Library/CloudStorage/GoogleDrive-chadha.samrath@gmail.com/My Drive\""
 alias postgresServer "/opt/homebrew/opt/postgresql@13/bin/postgres -D /opt/homebrew/var/postgresql@13"
 alias diskCheck "smartctl -a disk0 | grep \"Percentage Used\""
-alias pip pip3
-alias python python3
+alias k kubectl
 alias rm trash
 alias vim nvim
 alias v vim
@@ -32,18 +37,11 @@ alias za "nohup zathura & exit"
 alias t tmux
 alias tmuxReload "tmux source-file ~/.tmux.conf"
 alias factorial "python ~/code/factorial/factorial.py"
-alias rnDebugger "unset ELECTRON_RUN_AS_NODE && open -g 'rndebugger://set-debugger-loc?port=' ||" 
 
 function push
     git add .
     git commit -m $argv
     git push
-end
-
-function rn_debugger
-    unset ELECTRON_RUN_AS_NODE
-# use the arguement as port number
-    open -g 'rndebugger://set-debugger-loc?port=19001'
 end
 
 function updateDots
@@ -101,15 +99,15 @@ export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
 fish_add_path /opt/homebrew/opt/mysql-client/bin
 fish_add_path /opt/homebrew/opt/python@3.8/bin
 
-source ~/.config/fish/colors.fish
-
-# Setting PATH for Python 3.10
+# Setting PATH for Python 3.11
 # The original version is saved in /Users/sam/.config/fish/config.fish.pysave
-set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
-
-starship init fish | source
+set -x PATH "/Library/Frameworks/Python.framework/Versions/3.11/bin" "$PATH"
 
 # tabtab source for packages
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 fish_add_path /opt/homebrew/opt/node@16/bin
+
+set -gx NVM_DIR $HOME/.nvm
+bass source /opt/homebrew/opt/nvm/nvm.sh
+bass source /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm
